@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Información de la Vela</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f9f9f9; }
+    .tarjeta-vela { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 350px; margin: 0 auto; }
+    h1 { color: #333; }
+    .precio { font-size: 1.4em; color: #2e7d32; font-weight: bold; }
+    .btn-volver { margin-top: 20px; padding: 10px 20px; background: #333; color: white; border: none; border-radius: 6px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="tarjeta-vela">
+    <h1 id="titulo-vela">Cargando...</h1>
+    <p id="desc-vela">Buscando datos de la vela...</p>
+    <p id="precio-vela" class="precio"></p>
+  </div>
+
+  <button class="btn-volver" onclick="window.location.href='index.html'">← Volver al Inicio</button>
+
+  <script>
+    // 1. BASE DE DATOS DE TUS VELAS (Agrega o edita las que necesites)
+    const catalogoVelas = {
+      "lavanda": {
+        nombre: "Vela de Lavanda",
+        descripcion: "Vela artesanal hecha con cera de soya y aceite esencial de lavanda. Ideal para momentos de relajación.",
+        precio: "$12.00"
+      },
+      "vainilla": {
+        nombre: "Vela de Vainilla",
+        descripcion: "Aroma dulce y cálido que brinda un ambiente acogedor a tu espacio.",
+        precio: "$14.00"
+      },
+      "canela": {
+        nombre: "Vela de Canela y Manzana",
+        descripcion: "Mezcla especiada reconfortante perfecta para otoño e invierno.",
+        precio: "$15.00"
+      }
+    };
+
+    // 2. LEER EL ID DESDE LA URL (ejemplo: ?id=lavanda)
+    const urlParams = new URLSearchParams(window.location.search);
+    const idEscaneado = urlParams.get('id');
+
+    // 3. MOSTRAR LA INFORMACIÓN EN PANTALLA
+    if (idEscaneado && catalogoVelas[idEscaneado]) {
+      const vela = catalogoVelas[idEscaneado];
+      document.getElementById('titulo-vela').textContent = vela.nombre;
+      document.getElementById('desc-vela').textContent = vela.descripcion;
+      document.getElementById('precio-vela').textContent = vela.precio;
+    } else {
+      document.getElementById('titulo-vela').textContent = "Vela no encontrada";
+      document.getElementById('desc-vela').textContent = "Por favor escanea un código QR válido de nuestro catálogo.";
+      document.getElementById('precio-vela').textContent = "";
+    }
+  </script>
+</body>
+</html>
