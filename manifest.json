@@ -1,15 +1,22 @@
 {
-  "name": "Mi App Vela",
-  "short_name": "Vela",
+  "name": "Esencia del Mar",
+  "short_name": "EsenciaMar",
+  "description": "Velas Artesanales en Cera de Soya y Trazabilidad QR",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#06b6d4",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "icono.jpg",
+      "src": "https://cdn-icons-png.flaticon.com/512/944/944948.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/944/944948.png",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ]
 }
