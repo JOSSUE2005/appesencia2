@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esencia del Mar | Velas Artesanales & Trazabilidad QR</title>
-    
-    <!-- Tailwind CSS CDN -->
+    <title>Esencia del Mar | Velas Artesanales & Trazabilidad</title>
+
+    <!-- Estilos y Librerías -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuración PWA (Android / Chrome) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#06b6d4">
+
+    <!-- Configuración Exclusiva iPhone / iOS (Safari) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="EsenciaMar">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Registro de Service Worker para App Móvil -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker activo', reg))
+            .catch(err => console.log('Error en Service Worker', err));
+        });
+      }
+    </script>
+
+    <!-- Configuración de Colores Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -15,68 +39,15 @@
                         ocean: {
                             50: '#f0f9ff',
                             100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
+                            500: '#06b6d4',
                             700: '#0369a1',
-                            800: '#075985',
                             900: '#0c4a6e',
-                        },
-                        coastal: {
-                            50: '#f4fbfb',
-                            100: '#e6f7f7',
-                            200: '#c2eded',
-                            300: '#99dfdf',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                            800: '#115e59',
-                        },
-                        sand: {
-                            100: '#fdfbf7',
-                            200: '#f7f3e9',
-                            300: '#eef0e5',
                         }
-                    },
-                    fontFamily: {
-                        cinzel: ['Cinzel', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    
-    <!-- Google Fonts & FontAwesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-        }
-    </style>
-    <!-- Enlace a Manifest PWA -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#06b6d4">
-
-<!-- Compatibilidad con iPhone / iOS -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="EsenciaMar">
-<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/944/944948.png">
-
-<!-- Registro del Service Worker -->
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Service Worker registrado con éxito', reg))
-        .catch(err => console.log('Error al registrar Service Worker', err));
-    });
-  }
-</script>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-ocean-500 selection:text-white">
 
