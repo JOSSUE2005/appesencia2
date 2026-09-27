@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esencia del Mar | Velas Artesanales & Trazabilidad QR</title>
     
+    <!-- Favicon para la pestaña del navegador (Corrige el error 404) -->
+    <link rel="icon" type="image/png" href="icono_nuevo.png">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -57,54 +60,29 @@
             backdrop-filter: blur(12px);
         }
     </style>
+
     <!-- Enlace a Manifest PWA -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#06b6d4">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#06b6d4">
 
-<!-- Compatibilidad con iPhone / iOS -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="EsenciaMar">
-<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/944/944948.png">
+    <!-- Compatibilidad PWA Móvil -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="EsenciaMar">
+    <link rel="apple-touch-icon" href="icono_nuevo.png">
 
-<!-- Registro del Service Worker -->
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js')
-        .then(reg => console.log('Service Worker registrado con éxito', reg))
-        .catch(err => console.log('Error al registrar Service Worker', err));
-    });
-  }
-</script>
+    <!-- Registro del Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker registrado con éxito', reg))
+            .catch(err => console.log('Error al registrar Service Worker', err));
+        });
+      }
+    </script>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-ocean-500 selection:text-white">
-
-    <!-- 1. ENCABEZADO Y NAVEGACIÓN -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-coastal-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-ocean-600 to-coastal-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-water text-lg"></i>
-                </div>
-                <div>
-                    <span class="font-cinzel font-bold text-xl text-slate-900 tracking-tight block">ESENCIA DEL MAR</span>
-                    <span class="text-[10px] text-coastal-700 tracking-widest uppercase font-semibold block -mt-1">Taller Botánico Costero</span>
-                </div>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-wider text-slate-600">
-                <a href="#coleccion" class="hover:text-ocean-700 transition-colors">Colección</a>
-                <a href="#mezclador" class="hover:text-ocean-700 transition-colors">Diseña tu Vela</a>
-                <a href="#trazabilidad" class="hover:text-ocean-700 transition-colors">Trazabilidad QR</a>
-            </nav>
-
-            <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-full bg-coastal-50 hover:bg-coastal-100 text-ocean-800 transition-colors">
-                <i class="fa-solid fa-basket-shopping text-lg"></i>
-                <span id="cart-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
-            </button>
-        </div>
-    </header>
 
     <!-- 2. CONTENIDO PRINCIPAL -->
     <main>
