@@ -295,13 +295,13 @@
                 <span class="text-ocean-800 font-bold">Trazabilidad & Tecnología QR Integrada</span>
             </div>
         </div>
-    </footer>
+   </footer>
 
     <!-- 4. MODAL DETALLE / FICHA TÉCNICA -->
-    <div id="tech-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div id="tech-modal" onclick="if(event.target === this) closeModal('tech-modal')" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white border border-coastal-300 rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl relative">
             
-            <button onclick="closeModal('tech-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 p-2 z-10 transition-colors">
+            <button onclick="closeModal('tech-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 p-2 z-10 transition-colors" title="Cerrar">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
@@ -427,115 +427,114 @@
 
     <!-- 6. LÓGICA JAVASCRIPT COMPLETA -->
     <script>
-       /* --- Dataset Oficial (Las 6 Velas de Esencia del Mar) --- */
-/* --- Dataset Oficial (Las 7 Velas de Esencia del Mar) --- */
-const candlesData = [
-    {
-        id: 'ros-2100',
-        title: 'Rosa Silvestre',
-        subtitle: 'Romance & Calma Floral',
-        category: 'individual',
-        price: 24.00,
-        description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencias de rosas silvestres de la costa.',
-        notes: { salida: 'Pétalos de Rosa', corazon: 'Agua de Azahar', fondo: 'Almizcle Suave' },
-        crystal: 'Cuarzo Rosa (Amor Incondicional)',
-        components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
-        gelColor: '#f43f5e',
-        waxColor: '#fff1f2',
-        code: 'EDM-ROS-2100',
-        pagina: 'rosa-silvestre.html'
-    },
-    {
-        id: 'lim-2300',
-        title: 'Limón Marítimo',
-        subtitle: 'Frescura & Claridad Cítrica',
-        category: 'individual',
-        price: 23.00,
-        description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia revitalizante de Limón.',
-        notes: { salida: 'Cáscara de Limón', corazon: 'Brisa Salina', fondo: 'Musgo Blanco' },
-        crystal: 'Aquamarina Marina (Claridad Emocional)',
-        components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
-        gelColor: '#38bdf8',
-        waxColor: '#f0fdfa',
-        code: 'EDM-LIM-2300',
-        pagina: 'limon-maritimo.html'
-    },
-    {
-        id: 'lav-2200',
-        title: 'Lavanda Serena',
-        subtitle: 'Serenidad & Calma Profunda',
-        category: 'individual',
-        price: 22.00,
-        description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia pura de Lavanda.',
-        notes: { salida: 'Flor de Lavanda', corazon: 'Brisa de Sal Marina', fondo: 'Ámbar Blanco' },
-        crystal: 'Cuarzo Amatista (Transmutación & Paz)',
-        components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
-        gelColor: '#06b6d4',
-        waxColor: '#e0f2fe',
-        code: 'EDM-LAV-2200',
-        pagina: 'lavanda-serena.html'
-    },
-    {
-        id: 'euc-2500',
-        title: 'Eucalipto Marino',
-        subtitle: 'Purificación & Brisa Herbal',
-        category: 'individual',
-        price: 24.00,
-        description: 'Vela artesanal con notas herbales de eucalipto fresco y brisa marina para renovar la energía de tus espacios.',
-        notes: { salida: 'Eucalipto Fresco', corazon: 'Menta Acuática', fondo: 'Pino Marino' },
-        crystal: 'Aventurina Verde (Renovación & Prosperidad)',
-        components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
-        gelColor: '#10b981',
-        waxColor: '#ecfdf5',
-        code: 'EDM-EUC-2500',
-        pagina: 'eucalipto-marino.html'
-    },
-    {
-        id: 'can-2400',
-        title: 'Canela Costera',
-        subtitle: 'Calidez & Especias Marinas',
-        category: 'individual',
-        price: 24.00,
-        description: 'Cálido elixir floral y especiado vertido a mano con cera vegetal pura y gel inferior turquesa.',
-        notes: { salida: 'Canela en Rama', corazon: 'Corteza de Clavo', fondo: 'Vainilla Bourbon' },
-        crystal: 'Ojo de Tigre (Protección & Fuerza)',
-        components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
-        gelColor: '#d97706',
-        waxColor: '#fffbeb',
-        code: 'EDM-CAN-2400',
-        pagina: 'canela-costera.html'
-    },
-    {
-        id: 'bac-2600',
-        title: 'Brisa de Acantilado',
-        subtitle: 'Frescura Oceánica & Libertad',
-        category: 'signature',
-        price: 26.00,
-        description: 'Aroma intenso a brisa de mar abierto y rocas salinas con gel azul profundo de alta definición.',
-        notes: { salida: 'Brisa Salada', corazon: 'Espuma de Ola', fondo: 'Madera de Cedro' },
-        crystal: 'Turquesa Marina (Protección & Calma)',
-        components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
-        gelColor: '#0284c7',
-        waxColor: '#e0f2fe',
-        code: 'EDM-BAC-2600',
-        pagina: 'brisa-de-acantilado.html'
-    },
-    {
-        id: 'nar-2700',
-        title: 'Naranja Solar',
-        subtitle: 'Energía & Vitalidad Cítrica',
-        category: 'individual',
-        price: 25.00,
-        description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia vibrante de naranja dulce y destellos dorados.',
-        notes: { salida: 'Naranja Dulce', corazon: 'Flor de Azahar', fondo: 'Ámbar Cálido' },
-        crystal: 'Citrino (Abundancia & Energía Positive)',
-        components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
-        gelColor: '#f97316',
-        waxColor: '#fff7ed',
-        code: 'EDM-NAR-2700',
-        pagina: 'naranja-solar.html'
-    }
-];
+        /* --- Dataset Oficial (Las 7 Velas de Esencia del Mar) --- */
+        const candlesData = [
+            {
+                id: 'ros-2100',
+                title: 'Rosa Silvestre',
+                subtitle: 'Romance & Calma Floral',
+                category: 'individual',
+                price: 24.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencias de rosas silvestres de la costa.',
+                notes: { salida: 'Pétalos de Rosa', corazon: 'Agua de Azahar', fondo: 'Almizcle Suave' },
+                crystal: 'Cuarzo Rosa (Amor Incondicional)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#f43f5e',
+                waxColor: '#fff1f2',
+                code: 'EDM-ROS-2100',
+                pagina: 'rosa-silvestre.html'
+            },
+            {
+                id: 'lim-2300',
+                title: 'Limón Marítimo',
+                subtitle: 'Frescura & Claridad Cítrica',
+                category: 'individual',
+                price: 23.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia revitalizante de Limón.',
+                notes: { salida: 'Cáscara de Limón', corazon: 'Brisa Salina', fondo: 'Musgo Blanco' },
+                crystal: 'Aquamarina Marina (Claridad Emocional)',
+                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                gelColor: '#38bdf8',
+                waxColor: '#f0fdfa',
+                code: 'EDM-LIM-2300',
+                pagina: 'limon-maritimo.html'
+            },
+            {
+                id: 'lav-2200',
+                title: 'Lavanda Serena',
+                subtitle: 'Serenidad & Calma Profunda',
+                category: 'individual',
+                price: 22.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia pura de Lavanda.',
+                notes: { salida: 'Flor de Lavanda', corazon: 'Brisa de Sal Marina', fondo: 'Ámbar Blanco' },
+                crystal: 'Cuarzo Amatista (Transmutación & Paz)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#06b6d4',
+                waxColor: '#e0f2fe',
+                code: 'EDM-LAV-2200',
+                pagina: 'lavanda-serena.html'
+            },
+            {
+                id: 'euc-2500',
+                title: 'Eucalipto Marino',
+                subtitle: 'Purificación & Brisa Herbal',
+                category: 'individual',
+                price: 24.00,
+                description: 'Vela artesanal con notas herbales de eucalipto fresco y brisa marina para renovar la energía de tus espacios.',
+                notes: { salida: 'Eucalipto Fresco', corazon: 'Menta Acuática', fondo: 'Pino Marino' },
+                crystal: 'Aventurina Verde (Renovación & Prosperidad)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#10b981',
+                waxColor: '#ecfdf5',
+                code: 'EDM-EUC-2500',
+                pagina: 'eucalipto-marino.html'
+            },
+            {
+                id: 'can-2400',
+                title: 'Canela Costera',
+                subtitle: 'Calidez & Especias Marinas',
+                category: 'individual',
+                price: 24.00,
+                description: 'Cálido elixir floral y especiado vertido a mano con cera vegetal pura y gel inferior turquesa.',
+                notes: { salida: 'Canela en Rama', corazon: 'Corteza de Clavo', fondo: 'Vainilla Bourbon' },
+                crystal: 'Ojo de Tigre (Protección & Fuerza)',
+                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                gelColor: '#d97706',
+                waxColor: '#fffbeb',
+                code: 'EDM-CAN-2400',
+                pagina: 'canela-costera.html'
+            },
+            {
+                id: 'bac-2600',
+                title: 'Brisa de Acantilado',
+                subtitle: 'Frescura Oceánica & Libertad',
+                category: 'signature',
+                price: 26.00,
+                description: 'Aroma intenso a brisa de mar abierto y rocas salinas con gel azul profundo de alta definición.',
+                notes: { salida: 'Brisa Salada', corazon: 'Espuma de Ola', fondo: 'Madera de Cedro' },
+                crystal: 'Turquesa Marina (Protección & Calma)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#0284c7',
+                waxColor: '#e0f2fe',
+                code: 'EDM-BAC-2600',
+                pagina: 'brisa-de-acantilado.html'
+            },
+            {
+                id: 'nar-2700',
+                title: 'Naranja Solar',
+                subtitle: 'Energía & Vitalidad Cítrica',
+                category: 'individual',
+                price: 25.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia vibrante de naranja dulce y destellos dorados.',
+                notes: { salida: 'Naranja Dulce', corazon: 'Flor de Azahar', fondo: 'Ámbar Cálido' },
+                crystal: 'Citrino (Abundancia & Energía Positiva)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#f97316',
+                waxColor: '#fff7ed',
+                code: 'EDM-NAR-2700',
+                pagina: 'naranja-solar.html'
+            }
+        ];
 
         /* --- Estado del Carrito y Filtros --- */
         let cart = [];
@@ -543,14 +542,27 @@ const candlesData = [
 
         /* --- Configuración Dinámica de URLs para Códigos QR en GitHub Pages --- */
         function getAbsoluteCandleUrl(candle) {
-            // Construye la URL completa donde está alojada la vela en GitHub Pages o servidor local
             const baseUrl = window.location.href.split('?')[0].split('#')[0].replace(/index\.html$/i, '');
             const targetPage = candle.pagina || `${candle.id}.html`;
             return baseUrl.endsWith('/') ? `${baseUrl}${targetPage}` : `${baseUrl}/${targetPage}`;
         }
 
+        /* --- Helper para el Color del Cristal en el SVG --- */
+        function getCrystalColor(crystalName = '') {
+            const c = crystalName.toLowerCase();
+            if (c.includes('rosa')) return '#f472b6';
+            if (c.includes('aquamarina')) return '#38bdf8';
+            if (c.includes('amatista')) return '#a855f7';
+            if (c.includes('aventurina') || c.includes('verde')) return '#34d399';
+            if (c.includes('tigre')) return '#f59e0b';
+            if (c.includes('turquesa')) return '#2dd4bf';
+            if (c.includes('citrino')) return '#fbbf24';
+            return '#a855f7';
+        }
+
         /* --- SVG Candle Renderer --- */
         function generateCandleSVG(gelColor, title, crystal, waxColor, width = '100%', height = '100%') {
+            const crystalFill = getCrystalColor(crystal);
             return `
                 <svg viewBox="0 0 200 240" style="width:${width}; height:${height};" class="drop-shadow-md">
                     <!-- Vasito de Cristal Transparente -->
@@ -572,7 +584,7 @@ const candlesData = [
                     <circle cx="100" cy="28" r="4" fill="#fef08a" />
 
                     <!-- Cristal Encima de la Cera -->
-                    <polygon points="120,55 128,47 136,55 128,63" fill="#a855f7" opacity="0.9" stroke="#ffffff" stroke-width="1" />
+                    <polygon points="120,55 128,47 136,55 128,63" fill="${crystalFill}" opacity="0.9" stroke="#ffffff" stroke-width="1" />
                     
                     <!-- Brillo de Cristal Vasito -->
                     <path d="M 48 60 L 52 190" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round" />
@@ -660,8 +672,8 @@ const candlesData = [
             // Botón Añadir dentro del Modal
             const addBtn = document.getElementById('modal-add-btn');
             addBtn.onclick = () => {
-                addToCart(candle.id);
                 closeModal('tech-modal');
+                addToCart(candle.id);
             };
 
             document.getElementById('modal-qr-panel').classList.add('hidden');
@@ -700,7 +712,8 @@ const candlesData = [
         function addToCart(id) {
             const candle = candlesData.find(c => c.id === id);
             if (candle) {
-                cart.push({ ...candle, cartId: Date.now() });
+                const uniqueCartId = 'cart_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                cart.push({ ...candle, cartId: uniqueCartId });
                 updateCartUI();
                 toggleCartDrawer();
             }
@@ -754,7 +767,7 @@ const candlesData = [
                             <p class="text-[10px] text-slate-500 font-medium truncate">${item.crystal.split('(')[0]}</p>
                             <div class="text-ocean-700 font-bold text-xs mt-0.5">$${item.price.toFixed(2)}</div>
                         </div>
-                        <button onclick="removeFromCart(${item.cartId})" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-slate-50 hover:bg-rose-50 text-slate-300 hover:text-rose-500 flex items-center justify-center transition-colors">
+                        <button onclick="removeFromCart('${item.cartId}')" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-slate-50 hover:bg-rose-50 text-slate-300 hover:text-rose-500 flex items-center justify-center transition-colors" title="Eliminar">
                             <i class="fa-solid fa-trash-can text-xs"></i>
                         </button>
                     </div>
