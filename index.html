@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esencia del Mar | Velas Artesanales & Cristales</title>
+    <title>Esencia del Mar | Velas Artesanales Costeras</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -75,12 +75,12 @@
     <!-- ================= 2. HERO SECTION ================= -->
     <section class="relative bg-gradient-to-b from-coastal-50 via-ocean-50 to-white py-20 lg:py-28 overflow-hidden border-b border-coastal-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold mb-3 block">Artesanía Costera & Cristales Naturales</span>
+            <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold mb-3 block">Artesanía Costera, Conchas & Elementos Marinos</span>
             <h1 class="font-cinzel text-4xl sm:text-6xl font-bold text-slate-900 mb-6 max-w-4xl mx-auto leading-tight">
                 Velas de Cera de Soya & Gel Oceánico
             </h1>
             <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base mb-8 leading-relaxed">
-                Cada vela cuenta con un código QR único de trazabilidad, infusión de aceites esenciales y un cuarzo energizado en su interior.
+                Cada vela cuenta con un código QR de trazabilidad, aceite brillante para velas, polvo de brillo luminoso, conchas, estrellas de mar de resina, arena fina y piedras de playa.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="#catalogo" class="px-8 py-3.5 bg-gradient-to-r from-ocean-600 to-coastal-600 hover:from-ocean-700 hover:to-coastal-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all transform hover:scale-105">
@@ -98,13 +98,13 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
                 <h2 class="font-cinzel text-3xl font-bold text-slate-900">Nuestras 9 Esencias</h2>
-                <p class="text-xs text-slate-500 mt-1">Selección exclusiva vertida a mano con gemas y cera orgánica.</p>
+                <p class="text-xs text-slate-500 mt-1">Selección vertida a mano con detalles costeros, conchas, arena y brillo luminoso.</p>
             </div>
             
             <div class="flex gap-2">
                 <button onclick="filterCandles('all')" data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-ocean-700 text-white shadow-md">Todas</button>
-                <button onclick="filterCandles('individual')" data-filter="individual" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white text-slate-600 border border-slate-200 hover:bg-coastal-50">Individuales</button>
-                <button onclick="filterCandles('signature')" data-filter="signature" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white text-slate-600 border border-slate-200 hover:bg-coastal-50">Edición Signature</button>
+                <button onclick="filterCandles('individual')" data-filter="individual" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white text-slate-600 border border-slate-200 hover:bg-coastal-50">Individuales ($10)</button>
+                <button onclick="filterCandles('signature')" data-filter="signature" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white text-slate-600 border border-slate-200 hover:bg-coastal-50">Signature ($12)</button>
             </div>
         </div>
 
@@ -118,14 +118,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="font-cinzel text-3xl font-bold text-slate-900">Personalizador de Esencias</h2>
-                <p class="text-xs text-slate-500 mt-1">Mezcla tonos de gel, cristales y fragancias con previsualización en tiempo real.</p>
+                <p class="text-xs text-slate-500 mt-1">Combina tonos de gel, elementos costeros y destellos luminosos con previsualización en tiempo real.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 <div class="bg-white p-8 rounded-2xl border border-coastal-200 shadow-sm flex flex-col items-center justify-center min-h-[360px]">
                     <div id="custom-preview-svg" class="w-56 h-56"></div>
                     <h3 id="custom-title-preview" class="font-cinzel text-lg font-bold text-slate-900 mt-4">Lavanda Serena Pura</h3>
-                    <p id="custom-desc-preview" class="text-xs text-slate-500 text-center mt-1">Incrustada con Cuarzo Amatista y Gel Oceánico personalizado.</p>
+                    <p id="custom-desc-preview" class="text-xs text-slate-500 text-center mt-1">Incrustada con conchas marinas, aceite brillante y brillo luminoso.</p>
                 </div>
 
                 <div class="bg-white p-6 rounded-2xl border border-coastal-200 shadow-sm space-y-5">
@@ -155,14 +155,12 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">3. Cristal Energético</label>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">3. Elementos Costeros Inserción</label>
                         <select onchange="updateCustomMix('crystal', this.value)" class="w-full bg-slate-50 border border-coastal-200 rounded-xl p-3 text-xs font-medium outline-none focus:border-ocean-600">
-                            <option value="Cuarzo Amatista (Transmutación & Paz)">Cuarzo Amatista (Transmutación & Paz)</option>
-                            <option value="Cuarzo Rosa (Amor Incondicional)">Cuarzo Rosa (Amor Incondicional)</option>
-                            <option value="Aquamarina Marina (Claridad Emocional)">Aquamarina Marina (Claridad Emocional)</option>
-                            <option value="Aventurina Verde (Renovación & Prosperidad)">Aventurina Verde (Renovación)</option>
-                            <option value="Ojo de Tigre (Protección & Fuerza)">Ojo de Tigre (Protección)</option>
-                            <option value="Citrino Dorado (Abundancia & Vitalidad)">Citrino Dorado (Abundancia)</option>
+                            <option value="Conchas & Estrellas de Mar de Resina">Conchas & Estrellas de Mar de Resina</option>
+                            <option value="Arena Marina & Piedritas de Playa">Arena Marina & Piedritas de Playa</option>
+                            <option value="Polvo de Brillo Luminoso & Aceite Brillante">Polvo de Brillo Luminoso & Aceite Brillante</option>
+                            <option value="Set Costero Completo (Conchas, Arena & Resina)">Set Costero Completo (Conchas, Arena & Resina)</option>
                         </select>
                     </div>
                 </div>
@@ -177,12 +175,12 @@
                 <span class="text-xs uppercase tracking-widest text-coastal-300 font-bold block mb-2">Sistema de Autenticidad</span>
                 <h2 class="font-cinzel text-2xl sm:text-3xl font-bold mb-4">Garantía de Origen & Trazabilidad QR</h2>
                 <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
-                    Cada vela Esencia del Mar incluye un código QR grabado en su empaque. Al escanearlo, accederás a la ficha técnica oficial con la fecha de vertido, lote de fabricación, composición exacta y las propiedades del cristal.
+                    Cada vela Esencia del Mar incluye un código QR grabado en su empaque. Al escanearlo, accederás a la ficha técnica oficial con la fecha de vertido, lote de fabricación y detalles de sus elementos costeros.
                 </p>
                 <div class="flex items-center gap-4 text-xs font-semibold text-coastal-200">
                     <span><i class="fa-solid fa-qrcode mr-1.5"></i> QR Único</span>
                     <span><i class="fa-solid fa-leaf mr-1.5"></i> Cera 100% Soya</span>
-                    <span><i class="fa-solid fa-gem mr-1.5"></i> Gemas Reales</span>
+                    <span><i class="fa-solid fa-shell mr-1.5"></i> Elementos Marinos</span>
                 </div>
             </div>
             
@@ -199,7 +197,7 @@
                 <div class="flex items-center gap-2 text-white font-cinzel text-lg font-bold mb-3">
                     <i class="fa-solid fa-water text-ocean-500"></i> ESENCIA DEL MAR
                 </div>
-                <p class="leading-relaxed">Velas artesanales con cera orgánica de soya, gel oceánico y cristales energetizados.</p>
+                <p class="leading-relaxed">Velas artesanales con cera orgánica de soya, gel oceánico, conchas, figuras marinas, polvo brillante y detalles de playa.</p>
             </div>
             
             <div>
@@ -251,7 +249,7 @@
             </div>
 
             <div class="space-y-2 text-xs mb-6">
-                <p><strong>Cristal Incrustado:</strong> <span id="modal-crystal" class="text-ocean-700 font-semibold">-</span></p>
+                <p><strong>Elementos Costeros:</strong> <span id="modal-crystal" class="text-ocean-700 font-semibold">-</span></p>
                 <p><strong>Composición:</strong> <span id="modal-components" class="text-slate-600">-</span></p>
             </div>
 
@@ -319,18 +317,18 @@
 
     <!-- ================= 9. LÓGICA JAVASCRIPT COMPLETA ================= -->
     <script>
-        /* --- Dataset Oficial (Las 9 Velas de Esencia del Mar) --- */
+        /* --- Dataset Oficial (Las 9 Velas con Precios $10 y $12 + Elementos Costeros) --- */
         const candlesData = [
             {
                 id: 'ros-2100',
                 title: 'Rosa Silvestre',
                 subtitle: 'Romance & Calma Floral',
                 category: 'individual',
-                price: 24.00,
-                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencias de rosas silvestres de la costa.',
+                price: 10.00,
+                description: 'Vela artesanal en cera de soya y gel oceánico, enriquecida con aceite brillante para velas, conchas de mar y polvo de brillo rosado.',
                 notes: { salida: 'Pétalos de Rosa', corazon: 'Agua de Azahar', fondo: 'Almizcle Suave' },
-                crystal: 'Cuarzo Rosa (Amor Incondicional)',
-                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                crystal: 'Conchas Marinas, Polvo de Brillo & Aceite Brillante',
+                components: 'Cera de soya, gel oceánico, aceite brillante, conchas, polvo de brillo luminoso y arena fina de playa.',
                 gelColor: '#f43f5e',
                 waxColor: '#fff1f2',
                 code: 'EDM-ROS-2100',
@@ -341,11 +339,11 @@
                 title: 'Limón Marítimo',
                 subtitle: 'Frescura & Claridad Cítrica',
                 category: 'individual',
-                price: 23.00,
-                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia revitalizante de Limón.',
+                price: 10.00,
+                description: 'Vela artesanal en cera de soya y gel oceánico, con estrellas de mar de resina marina, piedritas de playa y destellos luminosos.',
                 notes: { salida: 'Cáscara de Limón', corazon: 'Brisa Salina', fondo: 'Musgo Blanco' },
-                crystal: 'Aquamarina Marina (Claridad Emocional)',
-                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                crystal: 'Estrella de Mar de Resina & Piedritas de Playa',
+                components: 'Cera de soya, gel oceánico, aceite brillante, estrellas de resina, piedritas de playa y polvo brillante.',
                 gelColor: '#38bdf8',
                 waxColor: '#f0fdfa',
                 code: 'EDM-LIM-2300',
@@ -356,11 +354,11 @@
                 title: 'Lavanda Serena',
                 subtitle: 'Serenidad & Calma Profunda',
                 category: 'individual',
-                price: 22.00,
-                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia pura de Lavanda.',
+                price: 10.00,
+                description: 'Vela artesanal vertida a mano con aceite brillante para velas, conchas marinas, arena fina de playa y figuras de resina.',
                 notes: { salida: 'Flor de Lavanda', corazon: 'Brisa de Sal Marina', fondo: 'Ámbar Blanco' },
-                crystal: 'Cuarzo Amatista (Transmutación & Paz)',
-                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                crystal: 'Conchas Marinas & Figuras de Resina Marinas',
+                components: 'Cera de soya, gel oceánico, aceite brillante, conchas, figuras de resina, arena y destellos de luz.',
                 gelColor: '#06b6d4',
                 waxColor: '#e0f2fe',
                 code: 'EDM-LAV-2200',
@@ -371,11 +369,11 @@
                 title: 'Eucalipto Marino',
                 subtitle: 'Purificación & Brisa Herbal',
                 category: 'individual',
-                price: 24.00,
-                description: 'Vela artesanal con notas herbales de eucalipto fresco y brisa marina para renovar la energía de tus espacios.',
+                price: 10.00,
+                description: 'Notas herbales de eucalipto fresco acompañadas de miniconchas de mar, arena fina y polvo de brillo luminoso.',
                 notes: { salida: 'Eucalipto Fresco', corazon: 'Menta Acuática', fondo: 'Pino Marino' },
-                crystal: 'Aventurina Verde (Renovación & Prosperidad)',
-                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                crystal: 'Estrellas de Mar de Resina & Conchas Naturales',
+                components: 'Cera de soya, gel oceánico, aceite brillante, conchas naturales, estrellas de resina y arena fina.',
                 gelColor: '#10b981',
                 waxColor: '#ecfdf5',
                 code: 'EDM-EUC-2500',
@@ -386,11 +384,11 @@
                 title: 'Canela Costera',
                 subtitle: 'Calidez & Especias Marinas',
                 category: 'individual',
-                price: 24.00,
-                description: 'Cálido elixir floral y especiado vertido a mano con cera vegetal pura y gel inferior turquesa.',
+                price: 10.00,
+                description: 'Cálido elixir floral y especiado con cera vegetal, gel inferior turquesa, piedritas de playa y destellos de brillo espeso.',
                 notes: { salida: 'Canela en Rama', corazon: 'Corteza de Clavo', fondo: 'Vainilla Bourbon' },
-                crystal: 'Ojo de Tigre (Protección & Fuerza)',
-                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                crystal: 'Piedritas de Playa & Figuras de Resina Marinas',
+                components: 'Cera de soya, gel oceánico, aceite brillante, figuras de resina, conchas y elementos costeros.',
                 gelColor: '#d97706',
                 waxColor: '#fffbeb',
                 code: 'EDM-CAN-2400',
@@ -401,11 +399,11 @@
                 title: 'Brisa de Acantilado',
                 subtitle: 'Frescura Oceánica & Libertad',
                 category: 'signature',
-                price: 26.00,
-                description: 'Aroma intenso a brisa de mar abierto y rocas salinas con gel azul profundo de alta definición.',
+                price: 12.00,
+                description: 'Edición Signature con gel azul de alta definición, conchas marinas seleccionadas, estrellas de resina, arena fina y polvo luminoso.',
                 notes: { salida: 'Brisa Salada', corazon: 'Espuma de Ola', fondo: 'Madera de Cedro' },
-                crystal: 'Turquesa Marina (Protección & Calma)',
-                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                crystal: 'Set Signature: Conchas, Estrellas de Resina & Arena Natural',
+                components: 'Cera de soya, gel oceánico premium, aceite brillante, conchas, estrellas de resina marina, arena y piedras de playa.',
                 gelColor: '#0284c7',
                 waxColor: '#e0f2fe',
                 code: 'EDM-BAC-2600',
@@ -416,11 +414,11 @@
                 title: 'Naranja Solar',
                 subtitle: 'Energía & Vitalidad Cítrica',
                 category: 'individual',
-                price: 25.00,
-                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia vibrante de naranja dulce y destellos dorados.',
+                price: 10.00,
+                description: 'Infusión cítrica vibrante con destellos de polvo brillante luminoso, conchas de caracol y arena natural de playa.',
                 notes: { salida: 'Naranja Dulce', corazon: 'Flor de Azahar', fondo: 'Ámbar Cálido' },
-                crystal: 'Citrino (Abundancia & Energía Positiva)',
-                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                crystal: 'Conchas Marinas & Polvo de Brillo Dorado',
+                components: 'Cera de soya, gel oceánico, aceite brillante para velas, conchas de caracol, arena fina y polvo resplandeciente.',
                 gelColor: '#f97316',
                 waxColor: '#fff7ed',
                 code: 'EDM-NAR-2700',
@@ -431,11 +429,11 @@
                 title: 'Atardecer en la Playa',
                 subtitle: 'Cálida Brisa & Ocaso Dorado',
                 category: 'signature',
-                price: 27.00,
-                description: 'Evoca los tonos cálidos y la serenidad del ocaso marino en una delicada infusión floral y tropical.',
+                price: 12.00,
+                description: 'Edición Signature con tonos cálidos del ocaso, estrellas de mar en resina, conchas doradas, arena fina y aceite brillante.',
                 notes: { salida: 'Flor de Frangipani', corazon: 'Coco Dorado', fondo: 'Ámbar Cálido' },
-                crystal: 'Citrino Dorado (Calidez & Vitalidad)',
-                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                crystal: 'Set Signature: Estrellas de Resina, Conchas & Polvo Brillante',
+                components: 'Cera de soya, gel oceánico premium, aceite brillante, figuras de resina marina, conchas y arena de playa.',
                 gelColor: '#f59e0b',
                 waxColor: '#fff7ed',
                 code: 'EDM-ATA-2800',
@@ -446,11 +444,11 @@
                 title: 'Marea Dulce y Especia',
                 subtitle: 'Dulzura Especiada & Encanto Marino',
                 category: 'signature',
-                price: 26.50,
-                description: 'Mezcla envuelta en matices marinos y especias dulces con cera vegetal pura y gel inferior de profunda calidez.',
+                price: 12.00,
+                description: 'Edición Signature envuelta en vainilla marina, conchas, piedritas de playa, figuras de resina y destellos luminosos.',
                 notes: { salida: 'Vainilla de Tahití', corazon: 'Especies Marinas', fondo: 'Sándalo Suave' },
-                crystal: 'Cornalina Marina (Encanto & Armonía)',
-                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                crystal: 'Set Signature: Piedritas de Playa, Conchas & Figuras Marinas',
+                components: 'Cera de soya, gel oceánico, aceite brillante, polvo de brillo luminoso, conchas marinas y piedras de playa.',
                 gelColor: '#ea580c',
                 waxColor: '#fdf4ff',
                 code: 'EDM-MDE-2900',
@@ -469,29 +467,14 @@
             return baseUrl.endsWith('/') ? `${baseUrl}${targetPage}` : `${baseUrl}/${targetPage}`;
         }
 
-        /* --- Helper para el Color del Cristal en el SVG --- */
-        function getCrystalColor(crystalName = '') {
-            const c = crystalName.toLowerCase();
-            if (c.includes('rosa')) return '#f472b6';
-            if (c.includes('aquamarina')) return '#38bdf8';
-            if (c.includes('amatista')) return '#a855f7';
-            if (c.includes('aventurina') || c.includes('verde')) return '#34d399';
-            if (c.includes('tigre')) return '#f59e0b';
-            if (c.includes('turquesa')) return '#2dd4bf';
-            if (c.includes('citrino')) return '#fbbf24';
-            if (c.includes('cornalina')) return '#ea580c';
-            return '#a855f7';
-        }
-
-        /* --- SVG Candle Renderer --- */
+        /* --- SVG Candle Renderer con Detalles Costeros --- */
         function generateCandleSVG(gelColor, title, crystal, waxColor, width = '100%', height = '100%') {
-            const crystalFill = getCrystalColor(crystal);
             return `
                 <svg viewBox="0 0 200 240" style="width:${width}; height:${height};" class="drop-shadow-md">
                     <!-- Vasito de Cristal Transparente -->
                     <path d="M 40 50 L 160 50 L 150 210 Q 100 220 50 210 Z" fill="rgba(255,255,255,0.3)" stroke="#0d9488" stroke-width="2.5" />
                     
-                    <!-- Capa Inferior (Gel Oceánico) -->
+                    <!-- Capa Inferior (Gel Oceánico con Arena/Detalles) -->
                     <path d="M 44 140 L 156 140 L 150 208 Q 100 218 50 208 Z" fill="${gelColor}" opacity="0.85" />
                     
                     <!-- Capa Superior (Cera de Soya) -->
@@ -506,9 +489,18 @@
                     </path>
                     <circle cx="100" cy="28" r="4" fill="#fef08a" />
 
-                    <!-- Cristal Encima de la Cera -->
-                    <polygon points="120,55 128,47 136,55 128,63" fill="${crystalFill}" opacity="0.9" stroke="#ffffff" stroke-width="1" />
+                    <!-- Concha y Estrella de Mar en la Cera -->
+                    <!-- Estrella de Mar -->
+                    <polygon points="125,58 128,50 131,58 138,58 132,62 134,69 128,64 122,69 124,62 118,58" fill="#f43f5e" opacity="0.9" />
+                    <!-- Concha de Mar -->
+                    <path d="M 70 56 Q 78 48 86 56 Q 78 64 70 56 Z" fill="#fde047" opacity="0.95" stroke="#ca8a04" stroke-width="0.8" />
                     
+                    <!-- Destellos de Polvo Brillante Luminoso -->
+                    <circle cx="65" cy="165" r="2" fill="#ffffff" opacity="0.8" />
+                    <circle cx="135" cy="180" r="2.5" fill="#ffffff" opacity="0.9" />
+                    <circle cx="100" cy="190" r="1.5" fill="#fef08a" opacity="0.8" />
+                    <circle cx="85" cy="155" r="2" fill="#ffffff" opacity="0.8" />
+
                     <!-- Brillo de Cristal Vasito -->
                     <path d="M 48 60 L 52 190" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round" />
                 </svg>
@@ -529,7 +521,7 @@
                     <div>
                         <div class="relative bg-gradient-to-b from-coastal-50 to-ocean-50 rounded-xl p-4 flex items-center justify-center h-56 border border-coastal-100 overflow-hidden">
                             <span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-[10px] font-bold text-ocean-800 uppercase tracking-wider border border-coastal-200">
-                                ${candle.category === 'signature' ? 'Signature' : 'Individual'}
+                                ${candle.category === 'signature' ? 'Signature ($12)' : 'Individual ($10)'}
                             </span>
                             <div class="w-full h-full transform group-hover:scale-110 transition-transform duration-300">
                                 ${generateCandleSVG(candle.gelColor, candle.title, candle.crystal, candle.waxColor)}
@@ -579,14 +571,14 @@
             document.getElementById('modal-components').textContent = candle.components;
             document.getElementById('modal-price').textContent = `$${candle.price.toFixed(2)}`;
             
-            document.getElementById('modal-badge-category').textContent = candle.category === 'signature' ? 'EDICIÓN SIGNATURE' : 'ESENCIA INDIVIDUAL';
+            document.getElementById('modal-badge-category').textContent = candle.category === 'signature' ? 'EDICIÓN SIGNATURE ($12)' : 'ESENCIA INDIVIDUAL ($10)';
             document.getElementById('modal-qr-code-text').textContent = candle.code;
 
             // Renderizar SVG dinámico en el modal
             const svgContainer = document.getElementById('modal-svg-container');
             svgContainer.innerHTML = generateCandleSVG(candle.gelColor, candle.title, candle.crystal, candle.waxColor, '100%', '100%');
 
-            // Generar URL Absoluta real para el QR (Compatible con GitHub Pages)
+            // Generar URL Absoluta real para el QR
             const targetUrl = getAbsoluteCandleUrl(candle);
             const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(targetUrl)}`;
             
@@ -686,7 +678,7 @@
                         </div>
                         <div class="flex-grow pr-6">
                             <h4 class="text-xs font-bold text-slate-900 line-clamp-1">${item.title}</h4>
-                            <p class="text-[10px] text-slate-500 font-medium truncate">${item.crystal.split('(')[0]}</p>
+                            <p class="text-[10px] text-slate-500 font-medium truncate">${item.crystal}</p>
                             <div class="text-ocean-700 font-bold text-xs mt-0.5">$${item.price.toFixed(2)}</div>
                         </div>
                         <button onclick="removeFromCart('${item.cartId}')" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-slate-50 hover:bg-rose-50 text-slate-300 hover:text-rose-500 flex items-center justify-center transition-colors" title="Eliminar">
@@ -744,7 +736,7 @@
         let customState = {
             essence2: 'Ninguna',
             gelColor: '#06b6d4',
-            crystal: 'Cuarzo Amatista (Transmutación & Paz)'
+            crystal: 'Conchas & Estrellas de Mar de Resina'
         };
 
         function updateCustomMix(key, value) {
@@ -775,7 +767,7 @@
             }
 
             if (descPreview) {
-                descPreview.textContent = `Incrustada con ${customState.crystal.split('(')[0]} y Gel Oceánico personalizado.`;
+                descPreview.textContent = `Incrustada con ${customState.crystal}, aceite brillante y gel oceánico.`;
             }
         }
 
