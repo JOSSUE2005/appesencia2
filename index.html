@@ -75,7 +75,7 @@
     <!-- ================= 2. HERO SECTION ================= -->
     <section class="relative bg-gradient-to-b from-coastal-50 via-ocean-50 to-white py-20 lg:py-28 overflow-hidden border-b border-coastal-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold mb-3 block">Artesanía Costera & Cuarzos Naturales</span>
+            <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold mb-3 block">Artesanía Costera & Cristales Naturales</span>
             <h1 class="font-cinzel text-4xl sm:text-6xl font-bold text-slate-900 mb-6 max-w-4xl mx-auto leading-tight">
                 Velas de Cera de Soya & Gel Oceánico
             </h1>
@@ -97,7 +97,7 @@
     <section id="catalogo" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
             <div>
-                <h2 class="font-cinzel text-3xl font-bold text-slate-900">Nuestras 7 Esencias</h2>
+                <h2 class="font-cinzel text-3xl font-bold text-slate-900">Nuestras 9 Esencias</h2>
                 <p class="text-xs text-slate-500 mt-1">Selección exclusiva vertida a mano con gemas y cera orgánica.</p>
             </div>
             
@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <div id="candle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div id="candle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
             <!-- Grid inyectado dinámicamente con JavaScript -->
         </div>
     </section>
@@ -137,6 +137,8 @@
                             <option value="Limón Marítimo">Limón Marítimo (+ Cítrico)</option>
                             <option value="Eucalipto Marino">Eucalipto Marino (+ Herbal)</option>
                             <option value="Canela Costera">Canela Costera (+ Especiado)</option>
+                            <option value="Atardecer en la Playa">Atardecer en la Playa (+ Cálido)</option>
+                            <option value="Marea Dulce y Especia">Marea Dulce y Especia (+ Vainilla & Dulce)</option>
                         </select>
                     </div>
 
@@ -148,6 +150,7 @@
                             <button onclick="updateCustomMix('gelColor', '#38bdf8')" class="w-8 h-8 rounded-full bg-[#38bdf8] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
                             <button onclick="updateCustomMix('gelColor', '#10b981')" class="w-8 h-8 rounded-full bg-[#10b981] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
                             <button onclick="updateCustomMix('gelColor', '#d97706')" class="w-8 h-8 rounded-full bg-[#d97706] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
+                            <button onclick="updateCustomMix('gelColor', '#f59e0b')" class="w-8 h-8 rounded-full bg-[#f59e0b] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
                         </div>
                     </div>
 
@@ -159,6 +162,7 @@
                             <option value="Aquamarina Marina (Claridad Emocional)">Aquamarina Marina (Claridad Emocional)</option>
                             <option value="Aventurina Verde (Renovación & Prosperidad)">Aventurina Verde (Renovación)</option>
                             <option value="Ojo de Tigre (Protección & Fuerza)">Ojo de Tigre (Protección)</option>
+                            <option value="Citrino Dorado (Abundancia & Vitalidad)">Citrino Dorado (Abundancia)</option>
                         </select>
                     </div>
                 </div>
@@ -315,7 +319,7 @@
 
     <!-- ================= 9. LÓGICA JAVASCRIPT COMPLETA ================= -->
     <script>
-        /* --- Dataset Oficial (Las 7 Velas de Esencia del Mar) --- */
+        /* --- Dataset Oficial (Las 9 Velas de Esencia del Mar) --- */
         const candlesData = [
             {
                 id: 'ros-2100',
@@ -421,6 +425,36 @@
                 waxColor: '#fff7ed',
                 code: 'EDM-NAR-2700',
                 pagina: 'naranja-solar.html'
+            },
+            {
+                id: 'ata-2800',
+                title: 'Atardecer en la Playa',
+                subtitle: 'Cálida Brisa & Ocaso Dorado',
+                category: 'signature',
+                price: 27.00,
+                description: 'Evoca los tonos cálidos y la serenidad del ocaso marino en una delicada infusión floral y tropical.',
+                notes: { salida: 'Flor de Frangipani', corazon: 'Coco Dorado', fondo: 'Ámbar Cálido' },
+                crystal: 'Citrino Dorado (Calidez & Vitalidad)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#f59e0b',
+                waxColor: '#fff7ed',
+                code: 'EDM-ATA-2800',
+                pagina: 'atardecer_en_la_playa.html'
+            },
+            {
+                id: 'mde-2900',
+                title: 'Marea Dulce y Especia',
+                subtitle: 'Dulzura Especiada & Encanto Marino',
+                category: 'signature',
+                price: 26.50,
+                description: 'Mezcla envuelta en matices marinos y especias dulces con cera vegetal pura y gel inferior de profunda calidez.',
+                notes: { salida: 'Vainilla de Tahití', corazon: 'Especies Marinas', fondo: 'Sándalo Suave' },
+                crystal: 'Cornalina Marina (Encanto & Armonía)',
+                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                gelColor: '#ea580c',
+                waxColor: '#fdf4ff',
+                code: 'EDM-MDE-2900',
+                pagina: 'marea-dulce-y-especia.html'
             }
         ];
 
@@ -445,6 +479,7 @@
             if (c.includes('tigre')) return '#f59e0b';
             if (c.includes('turquesa')) return '#2dd4bf';
             if (c.includes('citrino')) return '#fbbf24';
+            if (c.includes('cornalina')) return '#ea580c';
             return '#a855f7';
         }
 
