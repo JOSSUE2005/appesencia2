@@ -1,646 +1,766 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Esencia del Mar | Velas Artesanales & Cristales</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ocean: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#0ea5e9',
-              700: '#0369a1',
-              900: '#0c4a6e',
-            },
-            sand: {
-              50: '#faf8f5',
-              100: '#f5f0e6',
-              200: '#e6dac8',
-            }
-          },
-          fontFamily: {
-            serif: ['"Cormorant Garamond"', 'serif'],
-            sans: ['"Montserrat"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    @keyframes flicker {
-      0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
-      25% { transform: scale(1.08) rotate(1.5deg); opacity: 1; }
-      50% { transform: scale(0.95) rotate(-2deg); opacity: 0.85; }
-      75% { transform: scale(1.05) rotate(1deg); opacity: 0.98; }
-    }
-    .flame-anim {
-      transform-origin: 100px 75px;
-      animation: flicker 1.8s infinite ease-in-out;
-    }
-  </style>
-</head>
-<body class="bg-sand-50 text-slate-800 font-sans antialiased selection:bg-ocean-100 selection:text-ocean-900">
-
-  <!-- ================= HEADER & NAV ================= -->
-  <header class="sticky top-0 z-40 bg-sand-50/90 backdrop-blur-md border-b border-sand-200 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <i class="fa-solid me-2 fa-water text-ocean-700 text-2xl"></i>
-        <span class="font-serif text-2xl font-bold tracking-wide text-slate-900">ESENCIA DEL MAR</span>
-      </a>
-
-      <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
-        <a href="#catalogo" class="hover:text-ocean-700 transition-colors">Colección</a>
-        <a href="#personalizador" class="hover:text-ocean-700 transition-colors">Personalizador</a>
-        <a href="#nosotros" class="hover:text-ocean-700 transition-colors">Artesanía</a>
-      </nav>
-
-      <div class="flex items-center gap-4">
-        <button id="open-cart-btn" onclick="toggleCart()" class="relative p-2 text-slate-700 hover:text-ocean-700 transition-colors">
-          <i class="fa-solid fa-basket-shopping text-xl"></i>
-          <span id="cart-badge" class="absolute -top-1 -right-1 bg-ocean-700 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ================= HERO SECTION ================= -->
-  <section class="relative bg-gradient-to-b from-ocean-50 to-sand-50 py-20 lg:py-28 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold mb-3 block">Cera de Soya & Cristales Oceánicos</span>
-      <h1 class="font-serif text-4xl sm:text-6xl font-bold text-slate-900 mb-6 max-w-3xl mx-auto leading-tight">
-        La serenidad del mar capturada en velas artesanales
-      </h1>
-      <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg mb-8">
-        Velas vertidas a mano que combinan capas de gel oceánico, cera botánica de soya y cuarzos naturales para transformar la atmósfera de tu hogar.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="#catalogo" class="bg-ocean-700 hover:bg-ocean-900 text-white font-medium px-8 py-3.5 rounded-full shadow-md transition-all">Explorar Catálogo</a>
-        <a href="#personalizador" class="bg-white hover:bg-sand-100 text-slate-800 border border-sand-200 font-medium px-8 py-3.5 rounded-full transition-all">Diseñar Vela</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CATÁLOGO DE PRODUCTOS ================= -->
-  <section id="catalogo" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-3">Nuestra Colección</h2>
-      <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">Aromas inolvidables formulados con aceites esenciales y presentación artesanal.</p>
-      
-      <!-- Filtros -->
-      <div class="flex justify-center gap-2 mt-8 flex-wrap">
-        <button onclick="filterProducts('all')" data-cat="all" class="filter-btn bg-ocean-700 text-white px-5 py-2 rounded-full text-sm font-medium transition-all">Todos</button>
-        <button onclick="filterProducts('individual')" data-cat="individual" class="filter-btn bg-white text-slate-600 hover:bg-sand-100 px-5 py-2 rounded-full text-sm font-medium transition-all">Individuales</button>
-        <button onclick="filterProducts('signature')" data-cat="signature" class="filter-btn bg-white text-slate-600 hover:bg-sand-100 px-5 py-2 rounded-full text-sm font-medium transition-all">Edición Signature</button>
-      </div>
-    </div>
-
-    <!-- Grid de Velas -->
-    <div id="candle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Inyectado dinámicamente con JavaScript -->
-    </div>
-  </section>
-
-  <!-- ================= PERSONALIZADOR EN TIEMPO REAL ================= -->
-  <section id="personalizador" class="py-16 bg-white border-y border-sand-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold block mb-2">Diseño Exclusivo</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">Personaliza Tu Esencia</h2>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <!-- Preview SVG Interactiva -->
-        <div class="bg-sand-50 p-8 rounded-2xl flex flex-col items-center justify-center border border-sand-200 shadow-inner min-h-[380px]">
-          <div id="custom-preview-svg" class="w-64 h-64"></div>
-          <h3 id="custom-title-preview" class="font-serif text-xl font-bold text-slate-900 mt-4">Vela Personalizada</h3>
-          <p id="custom-desc-preview" class="text-xs text-slate-500 mt-1">Sombra Marina & Cuarzo Rosa</p>
-        </div>
-
-        <!-- Opciones de Configuración -->
-        <div class="space-y-6">
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Tono del Gel Oceánico</label>
-            <div class="flex gap-3">
-              <button onclick="updateCustomizer('gelColor', '#0ea5e9')" class="w-8 h-8 rounded-full bg-[#0ea5e9] border-2 border-white shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-              <button onclick="updateCustomizer('gelColor', '#1e3a8a')" class="w-8 h-8 rounded-full bg-[#1e3a8a] border-2 border-white shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-              <button onclick="updateCustomizer('gelColor', '#f43f5e')" class="w-8 h-8 rounded-full bg-[#f43f5e] border-2 border-white shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-              <button onclick="updateCustomizer('gelColor', '#059669')" class="w-8 h-8 rounded-full bg-[#059669] border-2 border-white shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-              <button onclick="updateCustomizer('gelColor', '#d97706')" class="w-8 h-8 rounded-full bg-[#d97706] border-2 border-white shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Tono de la Cera de Soya</label>
-            <div class="flex gap-3">
-              <button onclick="updateCustomizer('waxColor', '#f0f9ff')" class="w-8 h-8 rounded-full bg-[#f0f9ff] border border-slate-300 shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-              <button onclick="updateCustomizer('waxColor', '#ffe4e6')" class="w-8 h-8 rounded-full bg-[#ffe4e6] border border-slate-300 shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-              <button onclick="updateCustomizer('waxColor', '#fef3c7')" class="w-8 h-8 rounded-full bg-[#fef3c7] border border-slate-300 shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-              <button onclick="updateCustomizer('waxColor', '#dcfce7')" class="w-8 h-8 rounded-full bg-[#dcfce7] border border-slate-300 shadow-md focus:ring-2 focus:ring-ocean-700"></button>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Incrustación de Cristal</label>
-            <select id="custom-crystal" onchange="updateCustomizer('crystal', this.value)" class="w-full border border-sand-200 rounded-lg p-2.5 text-sm bg-sand-50 focus:ring-2 focus:ring-ocean-700 outline-none">
-              <option value="Cuarzo Rosa">Cuarzo Rosa (Amor y Armonía)</option>
-              <option value="Cuarzo Azul">Cuarzo Azul (Calma & Claridad)</option>
-              <option value="Jade Verde">Jade Verde (Prosperidad)</option>
-              <option value="Ámbar Marino">Ámbar Marino (Vitalidad)</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-2">Fragancia Principal</label>
-            <select id="custom-scent" class="w-full border border-sand-200 rounded-lg p-2.5 text-sm bg-sand-50 focus:ring-2 focus:ring-ocean-700 outline-none">
-              <option value="Brisa Marina & Sal">Brisa Marina & Sal de Playa</option>
-              <option value="Flor de Azahar & Neroli">Flor de Azahar & Neroli</option>
-              <option value="Eucalipto Costero">Eucalipto Costero & Jazmín</option>
-              <option value="Ámbar & Sándalo">Ámbar Warm & Sándalo</option>
-            </select>
-          </div>
-
-          <button onclick="addCustomToCart()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3 rounded-lg shadow-md transition-all">
-            Añadir Edición Personalizada ($29.90)
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer id="nosotros" class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <div class="flex items-center gap-2 text-white font-serif text-xl font-bold mb-3">
-          <i class="fa-solid fa-water text-ocean-500"></i> ESENCIA DEL MAR
-        </div>
-        <p class="text-sm">Elaboración artesanal de velas ecológicas con ceras 100% vegetales e ingredientes del océano.</p>
-      </div>
-      <div>
-        <h4 class="text-white font-semibold mb-3">Compromiso Eco</h4>
-        <ul class="text-sm space-y-2">
-          <li><i class="fa-solid fa-leaf text-emerald-500 mr-2"></i> Cera de Soya Biodegradable</li>
-          <li><i class="fa-solid fa-recycle text-emerald-500 mr-2"></i> Envases Reutilizables</li>
-          <li><i class="fa-solid fa-ban text-emerald-500 mr-2"></i> Libres de Parafinas Nocivas</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="text-white font-semibold mb-3">Contacto</h4>
-        <p class="text-sm mb-2">Taller Artesanal, Costa del Este</p>
-        <p class="text-sm"><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> +34 600 000 000</p>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-800 text-center text-xs">
-      © 2026 Esencia del Mar. Todos los derechos reservados.
-    </div>
-  </footer>
-
-  <!-- ================= DRAWER DEL CARRITO DE COMPRAS ================= -->
-  <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none">
-    <!-- Backdrop -->
-    <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm opacity-0 transition-opacity duration-300 pointer-events-auto hidden"></div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esencia del Mar | Velas Artesanales & Cristales</title>
     
-    <!-- Panel Deslizante -->
-    <div id="cart-content" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 pointer-events-auto flex flex-col">
-      <div class="p-5 border-b border-sand-200 flex items-center justify-between">
-        <h3 class="font-serif text-xl font-bold text-slate-900"><i class="fa-solid fa-basket-shopping mr-2 text-ocean-700"></i> Tu Cesta</h3>
-        <button onclick="toggleCart()" class="text-slate-400 hover:text-slate-600 p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
-      </div>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-      <!-- Lista de Productos -->
-      <div id="cart-items-list" class="flex-1 overflow-y-auto p-5 space-y-4">
-        <!-- Inyectado con JS -->
-      </div>
-
-      <!-- Total y Checkout -->
-      <div class="p-5 border-t border-sand-200 bg-sand-50 space-y-4">
-        <div class="flex justify-between items-center font-bold text-slate-900 text-lg">
-          <span>Subtotal:</span>
-          <span id="cart-subtotal">$0.00</span>
-        </div>
-        <p class="text-xs text-slate-500">Impuestos y gastos de envío calculados en la pantalla de pago.</p>
-        <button onclick="sendWhatsAppOrder()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 rounded-lg shadow transition-all flex items-center justify-center gap-2">
-          <i class="fa-brands fa-whatsapp text-lg"></i> Comprar por WhatsApp
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= MODAL FICHA TÉCNICA & QR ================= -->
-  <div id="tech-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative transform scale-95 transition-transform duration-300" id="tech-modal-box">
-      <button onclick="closeTechModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1">
-        <i class="fa-solid fa-xmark text-xl"></i>
-      </button>
-
-      <div class="text-center mb-6">
-        <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold block mb-1">Ficha Técnica & Autenticidad</span>
-        <h3 id="modal-title" class="font-serif text-2xl font-bold text-slate-900">Nombre de la Vela</h3>
-      </div>
-
-      <div class="space-y-4 text-sm text-slate-700">
-        <div class="bg-sand-50 p-3 rounded-lg border border-sand-200">
-          <span class="font-semibold block text-slate-900 mb-1"><i class="fa-solid fa-wind text-ocean-700 mr-2"></i>Pirámide Olfativa</span>
-          <p><strong>Salida:</strong> <span id="modal-salida">-</span></p>
-          <p><strong>Corazón:</strong> <span id="modal-corazon">-</span></p>
-          <p><strong>Fondo:</strong> <span id="modal-fondo">-</span></p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-sand-50 p-3 rounded-lg border border-sand-200">
-            <span class="font-semibold block text-slate-900 mb-1"><i class="fa-solid fa-gem text-purple-600 mr-1"></i> Cristal</span>
-            <span id="modal-cristal">-</span>
-          </div>
-          <div class="bg-sand-50 p-3 rounded-lg border border-sand-200">
-            <span class="font-semibold block text-slate-900 mb-1"><i class="fa-solid fa-vial text-emerald-600 mr-1"></i> Composición</span>
-            <span id="modal-composicion">-</span>
-          </div>
-        </div>
-
-        <div class="text-center pt-2">
-          <p class="text-xs text-slate-500 mb-2">Escanea para verificar la autenticidad y guardar la ficha en tu dispositivo:</p>
-          <img id="modal-qr" src="" alt="Código QR Ficha Técnica" class="w-32 h-32 mx-auto rounded-lg border p-1 bg-white shadow-sm">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= JAVASCRIPT ENGINE ================= -->
-  <script>
-    // 1. DATASET DE PRODUCTOS
-    const candlesData = [
-      {
-        id: 'brisa-marina',
-        name: 'Brisa Marina',
-        category: 'individual',
-        price: 24.90,
-        waxColor: '#e0f2fe',
-        gelColor: '#0ea5e9',
-        crystal: 'Cuarzo Azul',
-        salida: 'Sal marina, Bergamota',
-        corazon: 'Brisa de eucalipto, Jazmín',
-        fondo: 'Madera flotante, Almizcle',
-        composicion: '80% Cera de Soya, 20% Gel Oceánico Artesanal'
-      },
-      {
-        id: 'marea-ambar',
-        name: 'Marea de Ámbar',
-        category: 'signature',
-        price: 32.50,
-        waxColor: '#fef3c7',
-        gelColor: '#d97706',
-        crystal: 'Ámbar Marino',
-        salida: 'Mandarina silvestre, Naranja',
-        corazon: 'Ámbar dorado, Flor de azahar',
-        fondo: 'Vainilla marina, Sándalo',
-        composicion: '75% Cera de Soya, 25% Gel Oceánico con Pigmento Dorado'
-      },
-      {
-        id: 'coral-rosa',
-        name: 'Coral Rosa',
-        category: 'individual',
-        price: 26.00,
-        waxColor: '#ffe4e6',
-        gelColor: '#f43f5e',
-        crystal: 'Cuarzo Rosa',
-        salida: 'Toronja rosada, Flor de sal',
-        corazon: 'Coralina, Peonía acuática',
-        fondo: 'Ámbar blanco, Cedro',
-        composicion: '85% Cera de Soya, 15% Gel Espejado'
-      },
-      {
-        id: 'oceano-profundo',
-        name: 'Océano Profundo',
-        category: 'signature',
-        price: 35.00,
-        waxColor: '#bae6fd',
-        gelColor: '#1e3a8a',
-        crystal: 'Lapis Lázuli',
-        salida: 'Ozono marino, Lima fresca',
-        corazon: 'Algas marinas, Lavanda silvestre',
-        fondo: 'Pino costero, Ámbar gris',
-        composicion: '70% Cera de Soya Botánica, 30% Gel Translúcido Profundo'
-      },
-      {
-        id: 'perla-mar',
-        name: 'Perla del Mar',
-        category: 'individual',
-        price: 28.00,
-        waxColor: '#f8fafc',
-        gelColor: '#94a3b8',
-        crystal: 'Perla de Río',
-        salida: 'Flor de loto, Sal purificada',
-        corazon: 'Lirio acuático, Té blanco',
-        fondo: 'Almizcle suave, Vetiver',
-        composicion: '90% Cera de Soya Natural, 10% Gel Nacarado'
-      },
-      {
-        id: 'sol-de-sal',
-        name: 'Sol de Sal',
-        category: 'individual',
-        price: 23.50,
-        waxColor: '#fef9c3',
-        gelColor: '#eab308',
-        crystal: 'Citrino',
-        salida: 'Limón de Amalfi, Sal gorda',
-        corazon: 'Flor de azahar, Neroli',
-        fondo: 'Madera de olivo, Sol de verano',
-        composicion: '80% Cera de Soya, 20% Gel Transparente'
-      },
-      {
-        id: 'costa-esmeralda',
-        name: 'Costa de Esmeralda',
-        category: 'signature',
-        price: 34.00,
-        waxColor: '#dcfce7',
-        gelColor: '#059669',
-        crystal: 'Jade Verde',
-        salida: 'Bambú marino, Menta silvestre',
-        corazon: 'Hojas de hiedra, Romero',
-        fondo: 'Musgo de encina, Cedro blanco',
-        composicion: '75% Cera de Soya, 25% Gel Botánico Verde'
-      }
-    ];
-
-    // Estado del Carrito y Personalizador
-    let cart = [];
-    let customizerState = {
-      waxColor: '#f0f9ff',
-      gelColor: '#0ea5e9',
-      crystal: 'Cuarzo Rosa',
-      scent: 'Brisa Marina & Sal'
-    };
-
-    // 2. GENERADOR GRÁFICO SVG DINÁMICO
-    function generateCandleSVG(waxColor, gelColor, crystalName, isAnimating = true) {
-      const animClass = isAnimating ? 'flame-anim' : '';
-      return `
-        <svg viewBox="0 0 200 240" class="w-full h-full drop-shadow-xl" xmlns="http://www.w3.org/2000/svg">
-          <!-- Vaso de Cristal Exterior -->
-          <rect x="40" y="80" width="120" height="130" rx="12" fill="rgba(255, 255, 255, 0.2)" stroke="#cbd5e1" stroke-width="3" />
-          
-          <!-- Capa Inferior: Gel Oceánico -->
-          <rect x="44" y="145" width="112" height="60" rx="6" fill="${gelColor}" opacity="0.85" />
-          <!-- Burbujas en el gel -->
-          <circle cx="65" cy="175" r="3" fill="#ffffff" opacity="0.6" />
-          <circle cx="135" cy="185" r="4" fill="#ffffff" opacity="0.5" />
-          <circle cx="95" cy="165" r="2" fill="#ffffff" opacity="0.7" />
-
-          <!-- Cristal Incrustado en el Gel -->
-          <polygon points="120,170 130,160 138,172 132,185 118,180" fill="#ffffff" opacity="0.8" stroke="${gelColor}" stroke-width="1" />
-
-          <!-- Capa Superior: Cera de Soya -->
-          <rect x="44" y="90" width="112" height="58" rx="4" fill="${waxColor}" />
-          <ellipse cx="100" cy="90" rx="56" ry="8" fill="${waxColor}" filter="brightness(0.95)" />
-
-          <!-- Mecha -->
-          <line x1="100" y1="90" x2="100" y2="75" stroke="#475569" stroke-width="3" stroke-linecap="round" />
-
-          <!-- Llama Animada -->
-          <g class="${animClass}">
-            <path d="M 100 75 Q 92 55 100 35 Q 108 55 100 75 Z" fill="#f59e0b" />
-            <path d="M 100 75 Q 95 60 100 45 Q 105 60 100 75 Z" fill="#fef08a" />
-          </g>
-          
-          <!-- Brillo del Vaso -->
-          <path d="M 48 90 L 48 200" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5" />
-        </svg>
-      `;
-    }
-
-    // 3. RENDERIZAR RACK DE PRODUCTOS
-    function renderProducts(filter = 'all') {
-      const container = document.getElementById('candle-grid');
-      container.innerHTML = '';
-
-      const filtered = filter === 'all' 
-        ? candlesData 
-        : candlesData.filter(c => c.category === filter);
-
-      filtered.forEach(candle => {
-        const card = document.createElement('div');
-        card.className = 'bg-white rounded-2xl p-6 border border-sand-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group';
-        card.innerHTML = `
-          <div>
-            <div class="w-full h-56 bg-sand-50 rounded-xl p-4 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
-              ${generateCandleSVG(candle.waxColor, candle.gelColor, candle.crystal, true)}
-            </div>
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="font-serif text-xl font-bold text-slate-900">${candle.name}</h3>
-              <span class="font-bold text-ocean-700">${candle.price.toFixed(2)}</span>
-            </div>
-            <p class="text-xs text-slate-500 mb-3"><i class="fa-solid fa-gem text-purple-500 mr-1"></i> ${candle.crystal}</p>
-            <p class="text-xs text-slate-600 line-clamp-2 mb-4"><strong>Notas:</strong> ${candle.salida}</p>
-          </div>
-
-          <div class="space-y-2 pt-2 border-t border-sand-100">
-            <button onclick="addToCart('${candle.id}')" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2">
-              <i class="fa-solid fa-cart-plus"></i> Añadir a la Cesta
-            </button>
-            <button onclick="openTechModal('${candle.id}')" class="w-full bg-sand-50 hover:bg-sand-100 text-slate-700 text-xs font-medium py-2 rounded-lg transition-colors">
-              <i class="fa-solid fa-circle-info mr-1"></i> Ver Ficha Técnica
-            </button>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-    }
-
-    // 4. SISTEMA DE FILTRADO
-    function filterProducts(category) {
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        if(btn.dataset.cat === category) {
-          btn.className = 'filter-btn bg-ocean-700 text-white px-5 py-2 rounded-full text-sm font-medium transition-all';
-        } else {
-          btn.className = 'filter-btn bg-white text-slate-600 hover:bg-sand-100 px-5 py-2 rounded-full text-sm font-medium transition-all';
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coastal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        },
+                        ocean: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
         }
-      });
-      renderProducts(category);
-    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
 
-    // 5. CARRITO Y DRAWER
-    function toggleCart() {
-      const drawer = document.getElementById('cart-drawer');
-      const backdrop = document.getElementById('cart-backdrop');
-      const content = document.getElementById('cart-content');
+    <!-- ================= 1. NAVEGACIÓN PRINCIPAL ================= -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-coastal-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <i class="fa-solid fa-water text-ocean-600 text-2xl"></i>
+                <span class="font-cinzel text-xl sm:text-2xl font-bold tracking-wider text-slate-900">ESENCIA DEL MAR</span>
+            </a>
 
-      if (backdrop.classList.contains('hidden')) {
-        backdrop.classList.remove('hidden');
-        setTimeout(() => {
-          backdrop.classList.remove('opacity-0');
-          content.classList.remove('translate-x-full');
-        }, 10);
-      } else {
-        backdrop.classList.add('opacity-0');
-        content.classList.add('translate-x-full');
-        setTimeout(() => {
-          backdrop.classList.add('hidden');
-        }, 300);
-      }
-    }
+            <nav class="hidden md:flex items-center gap-8 font-medium text-xs uppercase tracking-wider text-slate-600">
+                <a href="#catalogo" class="hover:text-ocean-600 transition-colors">Colección</a>
+                <a href="#personalizador" class="hover:text-ocean-600 transition-colors">Personalizador</a>
+                <a href="#trazabilidad" class="hover:text-ocean-600 transition-colors">Trazabilidad QR</a>
+            </nav>
 
-    function addToCart(productId) {
-      const candle = candlesData.find(c => c.id === productId);
-      if (candle) {
-        cart.push({ ...candle, cartId: Date.now() });
-        updateCartUI();
-        toggleCart();
-      }
-    }
-
-    function removeFromCart(cartId) {
-      cart = cart.filter(item => item.cartId !== cartId);
-      updateCartUI();
-    }
-
-    function updateCartUI() {
-      const list = document.getElementById('cart-items-list');
-      const badge = document.getElementById('cart-badge');
-      const subtotalEl = document.getElementById('cart-subtotal');
-
-      badge.textContent = cart.length;
-      badge.classList.toggle('hidden', cart.length === 0);
-
-      list.innerHTML = '';
-      let total = 0;
-
-      if (cart.length === 0) {
-        list.innerHTML = `
-          <div class="text-center py-12 text-slate-400">
-            <i class="fa-solid fa-basket-shopping text-4xl mb-3 block"></i>
-            <p>Tu cesta está vacía</p>
-          </div>
-        `;
-      } else {
-        cart.forEach(item => {
-          total += item.price;
-          const div = document.createElement('div');
-          div.className = 'flex items-center justify-between p-3 bg-sand-50 rounded-xl border border-sand-200';
-          div.innerHTML = `
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 bg-white rounded-lg p-1">
-                ${generateCandleSVG(item.waxColor, item.gelColor, item.crystal, false)}
-              </div>
-              <div>
-                <h4 class="font-bold text-slate-900 text-sm">${item.name}</h4>
-                <p class="text-xs text-slate-500">$${item.price.toFixed(2)}</p>
-              </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-full bg-coastal-50 text-ocean-700 hover:bg-coastal-100 transition-colors">
+                    <i class="fa-solid fa-basket-shopping text-lg"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
             </div>
-            <button onclick="removeFromCart(${item.cartId})" class="text-slate-400 hover:text-red-500 p-2">
-              <i class="fa-solid fa-trash-can"></i>
+        </div>
+    </header>
+
+    <!-- ================= 2. HERO SECTION ================= -->
+    <section class="relative bg-gradient-to-b from-coastal-50 via-ocean-50 to-white py-20 lg:py-28 overflow-hidden border-b border-coastal-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="text-xs uppercase tracking-widest text-ocean-700 font-bold mb-3 block">Artesanía Costera & Cuarzos Naturales</span>
+            <h1 class="font-cinzel text-4xl sm:text-6xl font-bold text-slate-900 mb-6 max-w-4xl mx-auto leading-tight">
+                Velas de Cera de Soya & Gel Oceánico
+            </h1>
+            <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base mb-8 leading-relaxed">
+                Cada vela cuenta con un código QR único de trazabilidad, infusión de aceites esenciales y un cuarzo energizado en su interior.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#catalogo" class="px-8 py-3.5 bg-gradient-to-r from-ocean-600 to-coastal-600 hover:from-ocean-700 hover:to-coastal-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all transform hover:scale-105">
+                    Ver Catálogo Completo
+                </a>
+                <a href="#personalizador" class="px-8 py-3.5 bg-white text-slate-800 border border-coastal-200 hover:bg-coastal-50 font-bold text-xs uppercase tracking-wider rounded-xl transition-all">
+                    Crear Vela Custom
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 3. CATÁLOGO DE PRODUCTOS ================= -->
+    <section id="catalogo" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <h2 class="font-cinzel text-3xl font-bold text-slate-900">Nuestras 7 Esencias</h2>
+                <p class="text-xs text-slate-500 mt-1">Selección exclusiva vertida a mano con gemas y cera orgánica.</p>
+            </div>
+            
+            <div class="flex gap-2">
+                <button onclick="filterCandles('all')" data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-ocean-700 text-white shadow-md">Todas</button>
+                <button onclick="filterCandles('individual')" data-filter="individual" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white text-slate-600 border border-slate-200 hover:bg-coastal-50">Individuales</button>
+                <button onclick="filterCandles('signature')" data-filter="signature" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-white text-slate-600 border border-slate-200 hover:bg-coastal-50">Edición Signature</button>
+            </div>
+        </div>
+
+        <div id="candle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Grid inyectado dinámicamente con JavaScript -->
+        </div>
+    </section>
+
+    <!-- ================= 4. PERSONALIZADOR LIVE PREVIEW ================= -->
+    <section id="personalizador" class="py-16 bg-gradient-to-b from-white to-coastal-50/50 border-y border-coastal-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-cinzel text-3xl font-bold text-slate-900">Personalizador de Esencias</h2>
+                <p class="text-xs text-slate-500 mt-1">Mezcla tonos de gel, cristales y fragancias con previsualización en tiempo real.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="bg-white p-8 rounded-2xl border border-coastal-200 shadow-sm flex flex-col items-center justify-center min-h-[360px]">
+                    <div id="custom-preview-svg" class="w-56 h-56"></div>
+                    <h3 id="custom-title-preview" class="font-cinzel text-lg font-bold text-slate-900 mt-4">Lavanda Serena Pura</h3>
+                    <p id="custom-desc-preview" class="text-xs text-slate-500 text-center mt-1">Incrustada con Cuarzo Amatista y Gel Oceánico personalizado.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-coastal-200 shadow-sm space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">1. Combinar Segunda Esencia</label>
+                        <select onchange="updateCustomMix('essence2', this.value)" class="w-full bg-slate-50 border border-coastal-200 rounded-xl p-3 text-xs font-medium outline-none focus:border-ocean-600">
+                            <option value="Ninguna">Ninguna (Solo Lavanda Serena)</option>
+                            <option value="Rosa Silvestre">Rosa Silvestre (+ Floral)</option>
+                            <option value="Limón Marítimo">Limón Marítimo (+ Cítrico)</option>
+                            <option value="Eucalipto Marino">Eucalipto Marino (+ Herbal)</option>
+                            <option value="Canela Costera">Canela Costera (+ Especiado)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">2. Color del Gel Oceánico</label>
+                        <div class="flex gap-3">
+                            <button onclick="updateCustomMix('gelColor', '#06b6d4')" class="w-8 h-8 rounded-full bg-[#06b6d4] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
+                            <button onclick="updateCustomMix('gelColor', '#f43f5e')" class="w-8 h-8 rounded-full bg-[#f43f5e] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
+                            <button onclick="updateCustomMix('gelColor', '#38bdf8')" class="w-8 h-8 rounded-full bg-[#38bdf8] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
+                            <button onclick="updateCustomMix('gelColor', '#10b981')" class="w-8 h-8 rounded-full bg-[#10b981] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
+                            <button onclick="updateCustomMix('gelColor', '#d97706')" class="w-8 h-8 rounded-full bg-[#d97706] border-2 border-white ring-2 ring-slate-200 focus:ring-ocean-600"></button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">3. Cristal Energético</label>
+                        <select onchange="updateCustomMix('crystal', this.value)" class="w-full bg-slate-50 border border-coastal-200 rounded-xl p-3 text-xs font-medium outline-none focus:border-ocean-600">
+                            <option value="Cuarzo Amatista (Transmutación & Paz)">Cuarzo Amatista (Transmutación & Paz)</option>
+                            <option value="Cuarzo Rosa (Amor Incondicional)">Cuarzo Rosa (Amor Incondicional)</option>
+                            <option value="Aquamarina Marina (Claridad Emocional)">Aquamarina Marina (Claridad Emocional)</option>
+                            <option value="Aventurina Verde (Renovación & Prosperidad)">Aventurina Verde (Renovación)</option>
+                            <option value="Ojo de Tigre (Protección & Fuerza)">Ojo de Tigre (Protección)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 5. SECCIÓN TRAZABILIDAD QR ================= -->
+    <section id="trazabilidad" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-ocean-900 to-slate-900 rounded-3xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+            <div class="max-w-xl">
+                <span class="text-xs uppercase tracking-widest text-coastal-300 font-bold block mb-2">Sistema de Autenticidad</span>
+                <h2 class="font-cinzel text-2xl sm:text-3xl font-bold mb-4">Garantía de Origen & Trazabilidad QR</h2>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6">
+                    Cada vela Esencia del Mar incluye un código QR grabado en su empaque. Al escanearlo, accederás a la ficha técnica oficial con la fecha de vertido, lote de fabricación, composición exacta y las propiedades del cristal.
+                </p>
+                <div class="flex items-center gap-4 text-xs font-semibold text-coastal-200">
+                    <span><i class="fa-solid fa-qrcode mr-1.5"></i> QR Único</span>
+                    <span><i class="fa-solid fa-leaf mr-1.5"></i> Cera 100% Soya</span>
+                    <span><i class="fa-solid fa-gem mr-1.5"></i> Gemas Reales</span>
+                </div>
+            </div>
+            
+            <div id="demo-qr-box" class="bg-white p-4 rounded-2xl shadow-xl flex flex-col items-center justify-center text-slate-900 shrink-0">
+                <!-- QR Demo inyectado vía JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 6. FOOTER CON CONTACTOS ================= -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <div class="flex items-center gap-2 text-white font-cinzel text-lg font-bold mb-3">
+                    <i class="fa-solid fa-water text-ocean-500"></i> ESENCIA DEL MAR
+                </div>
+                <p class="leading-relaxed">Velas artesanales con cera orgánica de soya, gel oceánico y cristales energetizados.</p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Atención al Cliente</h4>
+                <div class="space-y-2">
+                    <p><a href="https://wa.me/593968777680" target="_blank" class="hover:text-emerald-400 transition-colors flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-500"></i> +593 968 777 680</a></p>
+                    <p><a href="https://wa.me/593979919833" target="_blank" class="hover:text-emerald-400 transition-colors flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-500"></i> +593 979 919 833</a></p>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold mb-3 uppercase tracking-wider">Calidad Garantizada</h4>
+                <p class="leading-relaxed">Compatibilidad de trazabilidad mediante GitHub Pages y códigos QR homologados.</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-800 text-center text-slate-500">
+            © 2026 Esencia del Mar. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- ================= 7. MODAL FICHA TÉCNICA Y QR ================= -->
+    <div id="tech-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('tech-modal')" class="absolute top-5 right-5 text-slate-400 hover:text-slate-800 p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-          `;
-          list.appendChild(div);
+
+            <div class="flex items-center gap-2 mb-1">
+                <span id="modal-badge-category" class="bg-coastal-100 text-ocean-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">ESENCIA INDIVIDUAL</span>
+            </div>
+            
+            <h3 id="modal-title" class="font-cinzel text-2xl font-bold text-slate-900">Rosa Silvestre</h3>
+            <p id="modal-subtitle" class="text-xs text-coastal-700 font-bold mb-4">Romance & Calma Floral</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-4">
+                <div id="modal-svg-container" class="bg-gradient-to-b from-coastal-50 to-ocean-50 rounded-2xl p-4 h-48 flex items-center justify-center border border-coastal-100">
+                    <!-- SVG renderizado dinámicamente -->
+                </div>
+
+                <div class="space-y-2 text-xs">
+                    <p class="text-slate-600" id="modal-description">-</p>
+                    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                        <span class="font-bold text-slate-900 block mb-1">Pirámide Olfativa:</span>
+                        <p><strong>Salida:</strong> <span id="modal-salida">-</span></p>
+                        <p><strong>Corazón:</strong> <span id="modal-corazon">-</span></p>
+                        <p><strong>Fondo:</strong> <span id="modal-fondo">-</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-2 text-xs mb-6">
+                <p><strong>Cristal Incrustado:</strong> <span id="modal-crystal" class="text-ocean-700 font-semibold">-</span></p>
+                <p><strong>Composición:</strong> <span id="modal-components" class="text-slate-600">-</span></p>
+            </div>
+
+            <!-- Panel desplegable QR -->
+            <div class="mb-4">
+                <button onclick="toggleModalQR()" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-colors">
+                    <i class="fa-solid fa-qrcode"></i> Mostrar Código QR de Trazabilidad
+                </button>
+                <div id="modal-qr-panel" class="hidden text-center pt-4 p-4 bg-coastal-50 rounded-2xl border border-coastal-200 mt-2">
+                    <div id="modal-qr-img-box" class="flex justify-center mb-2"></div>
+                    <p id="modal-qr-code-text" class="text-[10px] font-mono text-slate-500 uppercase tracking-widest"></p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                <div>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase block">Precio Oficial</span>
+                    <span id="modal-price" class="font-cinzel text-2xl font-bold text-slate-900">$0.00</span>
+                </div>
+                <button id="modal-add-btn" class="px-6 py-3 bg-gradient-to-r from-ocean-600 to-coastal-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-md hover:scale-105 transition-all">
+                    Añadir a la Cesta
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 8. CARRITO SLIDING DRAWER ================= -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div id="cart-backdrop" onclick="toggleCartDrawer()" class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity opacity-0"></div>
+        <div id="cart-content" class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl transition-transform translate-x-full duration-300 flex flex-col">
+            
+            <div class="p-6 border-b border-coastal-200 flex items-center justify-between bg-coastal-50">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-basket-shopping text-ocean-600 text-lg"></i>
+                    <h3 class="font-cinzel text-lg font-bold text-slate-900">Tu Cesta Costera</h3>
+                </div>
+                <button onclick="toggleCartDrawer()" class="text-slate-400 hover:text-slate-800 p-2">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div id="cart-items-list" class="flex-grow p-6 overflow-y-auto space-y-4">
+                <!-- Cart Items insertados dinámicamente -->
+            </div>
+
+            <div class="p-6 border-t border-coastal-200 bg-coastal-50/50 space-y-3">
+                <div class="flex justify-between items-center text-sm font-bold text-slate-900">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal" class="text-xl text-ocean-700">$0.00</span>
+                </div>
+
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Realizar Pedido Vía WhatsApp</span>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="checkoutCart('593968777680')" class="py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp 1
+                    </button>
+                    <button onclick="checkoutCart('593979919833')" class="py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-xl shadow-md transition-all flex items-center justify-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp 2
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= 9. LÓGICA JAVASCRIPT COMPLETA ================= -->
+    <script>
+        /* --- Dataset Oficial (Las 7 Velas de Esencia del Mar) --- */
+        const candlesData = [
+            {
+                id: 'ros-2100',
+                title: 'Rosa Silvestre',
+                subtitle: 'Romance & Calma Floral',
+                category: 'individual',
+                price: 24.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencias de rosas silvestres de la costa.',
+                notes: { salida: 'Pétalos de Rosa', corazon: 'Agua de Azahar', fondo: 'Almizcle Suave' },
+                crystal: 'Cuarzo Rosa (Amor Incondicional)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#f43f5e',
+                waxColor: '#fff1f2',
+                code: 'EDM-ROS-2100',
+                pagina: 'rosa-silvestre.html'
+            },
+            {
+                id: 'lim-2300',
+                title: 'Limón Marítimo',
+                subtitle: 'Frescura & Claridad Cítrica',
+                category: 'individual',
+                price: 23.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia revitalizante de Limón.',
+                notes: { salida: 'Cáscara de Limón', corazon: 'Brisa Salina', fondo: 'Musgo Blanco' },
+                crystal: 'Aquamarina Marina (Claridad Emocional)',
+                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                gelColor: '#38bdf8',
+                waxColor: '#f0fdfa',
+                code: 'EDM-LIM-2300',
+                pagina: 'limon-maritimo.html'
+            },
+            {
+                id: 'lav-2200',
+                title: 'Lavanda Serena',
+                subtitle: 'Serenidad & Calma Profunda',
+                category: 'individual',
+                price: 22.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia pura de Lavanda.',
+                notes: { salida: 'Flor de Lavanda', corazon: 'Brisa de Sal Marina', fondo: 'Ámbar Blanco' },
+                crystal: 'Cuarzo Amatista (Transmutación & Paz)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#06b6d4',
+                waxColor: '#e0f2fe',
+                code: 'EDM-LAV-2200',
+                pagina: 'lavanda-serena.html'
+            },
+            {
+                id: 'euc-2500',
+                title: 'Eucalipto Marino',
+                subtitle: 'Purificación & Brisa Herbal',
+                category: 'individual',
+                price: 24.00,
+                description: 'Vela artesanal con notas herbales de eucalipto fresco y brisa marina para renovar la energía de tus espacios.',
+                notes: { salida: 'Eucalipto Fresco', corazon: 'Menta Acuática', fondo: 'Pino Marino' },
+                crystal: 'Aventurina Verde (Renovación & Prosperidad)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#10b981',
+                waxColor: '#ecfdf5',
+                code: 'EDM-EUC-2500',
+                pagina: 'eucalipto-marino.html'
+            },
+            {
+                id: 'can-2400',
+                title: 'Canela Costera',
+                subtitle: 'Calidez & Especias Marinas',
+                category: 'individual',
+                price: 24.00,
+                description: 'Cálido elixir floral y especiado vertido a mano con cera vegetal pura y gel inferior turquesa.',
+                notes: { salida: 'Canela en Rama', corazon: 'Corteza de Clavo', fondo: 'Vainilla Bourbon' },
+                crystal: 'Ojo de Tigre (Protección & Fuerza)',
+                components: 'Cera soya 75%, Gel oceánico 25%, Mecha algodón.',
+                gelColor: '#d97706',
+                waxColor: '#fffbeb',
+                code: 'EDM-CAN-2400',
+                pagina: 'canela-costera.html'
+            },
+            {
+                id: 'bac-2600',
+                title: 'Brisa de Acantilado',
+                subtitle: 'Frescura Oceánica & Libertad',
+                category: 'signature',
+                price: 26.00,
+                description: 'Aroma intenso a brisa de mar abierto y rocas salinas con gel azul profundo de alta definición.',
+                notes: { salida: 'Brisa Salada', corazon: 'Espuma de Ola', fondo: 'Madera de Cedro' },
+                crystal: 'Turquesa Marina (Protección & Calma)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#0284c7',
+                waxColor: '#e0f2fe',
+                code: 'EDM-BAC-2600',
+                pagina: 'brisa-de-acantilado.html'
+            },
+            {
+                id: 'nar-2700',
+                title: 'Naranja Solar',
+                subtitle: 'Energía & Vitalidad Cítrica',
+                category: 'individual',
+                price: 25.00,
+                description: 'Vela artesanal en cera de soya orgánica y gel oceánico, infundida con esencia vibrante de naranja dulce y destellos dorados.',
+                notes: { salida: 'Naranja Dulce', corazon: 'Flor de Azahar', fondo: 'Ámbar Cálido' },
+                crystal: 'Citrino (Abundancia & Energía Positiva)',
+                components: 'Cera soya 70%, Gel oceánico 30%, Mecha algodón.',
+                gelColor: '#f97316',
+                waxColor: '#fff7ed',
+                code: 'EDM-NAR-2700',
+                pagina: 'naranja-solar.html'
+            }
+        ];
+
+        /* --- Estado del Carrito y Filtros --- */
+        let cart = [];
+        let currentFilter = 'all';
+
+        /* --- Configuración Dinámica de URLs para Códigos QR en GitHub Pages --- */
+        function getAbsoluteCandleUrl(candle) {
+            const baseUrl = window.location.href.split('?')[0].split('#')[0].replace(/index\.html$/i, '');
+            const targetPage = candle.pagina || `${candle.id}.html`;
+            return baseUrl.endsWith('/') ? `${baseUrl}${targetPage}` : `${baseUrl}/${targetPage}`;
+        }
+
+        /* --- Helper para el Color del Cristal en el SVG --- */
+        function getCrystalColor(crystalName = '') {
+            const c = crystalName.toLowerCase();
+            if (c.includes('rosa')) return '#f472b6';
+            if (c.includes('aquamarina')) return '#38bdf8';
+            if (c.includes('amatista')) return '#a855f7';
+            if (c.includes('aventurina') || c.includes('verde')) return '#34d399';
+            if (c.includes('tigre')) return '#f59e0b';
+            if (c.includes('turquesa')) return '#2dd4bf';
+            if (c.includes('citrino')) return '#fbbf24';
+            return '#a855f7';
+        }
+
+        /* --- SVG Candle Renderer --- */
+        function generateCandleSVG(gelColor, title, crystal, waxColor, width = '100%', height = '100%') {
+            const crystalFill = getCrystalColor(crystal);
+            return `
+                <svg viewBox="0 0 200 240" style="width:${width}; height:${height};" class="drop-shadow-md">
+                    <!-- Vasito de Cristal Transparente -->
+                    <path d="M 40 50 L 160 50 L 150 210 Q 100 220 50 210 Z" fill="rgba(255,255,255,0.3)" stroke="#0d9488" stroke-width="2.5" />
+                    
+                    <!-- Capa Inferior (Gel Oceánico) -->
+                    <path d="M 44 140 L 156 140 L 150 208 Q 100 218 50 208 Z" fill="${gelColor}" opacity="0.85" />
+                    
+                    <!-- Capa Superior (Cera de Soya) -->
+                    <path d="M 41 52 L 159 52 L 156 140 L 44 140 Z" fill="${waxColor}" />
+                    
+                    <!-- Mecha -->
+                    <line x1="100" y1="52" x2="100" y2="35" stroke="#475569" stroke-width="3" stroke-linecap="round" />
+                    
+                    <!-- Llama Animada -->
+                    <path d="M 100 12 Q 108 25 100 36 Q 92 25 100 12 Z" fill="#f59e0b">
+                        <animate attributeName="d" values="M 100 12 Q 108 25 100 36 Q 92 25 100 12 Z; M 100 8 Q 110 23 100 36 Q 90 23 100 8 Z; M 100 12 Q 108 25 100 36 Q 92 25 100 12 Z" dur="1.5s" repeatCount="indefinite" />
+                    </path>
+                    <circle cx="100" cy="28" r="4" fill="#fef08a" />
+
+                    <!-- Cristal Encima de la Cera -->
+                    <polygon points="120,55 128,47 136,55 128,63" fill="${crystalFill}" opacity="0.9" stroke="#ffffff" stroke-width="1" />
+                    
+                    <!-- Brillo de Cristal Vasito -->
+                    <path d="M 48 60 L 52 190" stroke="rgba(255,255,255,0.6)" stroke-width="3" stroke-linecap="round" />
+                </svg>
+            `;
+        }
+
+        /* --- Renderizar Tarjetas del Catálogo --- */
+        function renderCandles(candles) {
+            const grid = document.getElementById('candle-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            candles.forEach(candle => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl border border-coastal-200 p-5 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative bg-gradient-to-b from-coastal-50 to-ocean-50 rounded-xl p-4 flex items-center justify-center h-56 border border-coastal-100 overflow-hidden">
+                            <span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-[10px] font-bold text-ocean-800 uppercase tracking-wider border border-coastal-200">
+                                ${candle.category === 'signature' ? 'Signature' : 'Individual'}
+                            </span>
+                            <div class="w-full h-full transform group-hover:scale-110 transition-transform duration-300">
+                                ${generateCandleSVG(candle.gelColor, candle.title, candle.crystal, candle.waxColor)}
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h3 class="font-cinzel text-lg font-bold text-slate-900 group-hover:text-ocean-700 transition-colors">${candle.title}</h3>
+                            <p class="text-xs text-coastal-700 font-bold mt-0.5">${candle.subtitle}</p>
+                            <p class="text-xs text-slate-500 mt-2 line-clamp-2 leading-relaxed">${candle.description}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block">Precio</span>
+                            <span class="font-cinzel text-xl font-bold text-slate-900">$${candle.price.toFixed(2)}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="openTechModal('${candle.id}')" class="p-2.5 rounded-xl bg-coastal-50 text-ocean-800 hover:bg-coastal-100 transition-colors" title="Ver Ficha Técnica">
+                                <i class="fa-solid fa-circle-info text-sm"></i>
+                            </button>
+                            <button onclick="addToCart('${candle.id}')" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-ocean-600 to-coastal-600 hover:from-ocean-700 hover:to-coastal-700 text-white font-bold text-xs transition-all shadow-md hover:scale-105">
+                                <i class="fa-solid fa-cart-plus mr-1"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        /* --- Modales y UI --- */
+        function openTechModal(id) {
+            const candle = candlesData.find(c => c.id === id);
+            if (!candle) return;
+
+            document.getElementById('modal-title').textContent = candle.title;
+            document.getElementById('modal-subtitle').textContent = candle.subtitle;
+            document.getElementById('modal-description').textContent = candle.description;
+            
+            document.getElementById('modal-salida').textContent = candle.notes.salida;
+            document.getElementById('modal-corazon').textContent = candle.notes.corazon;
+            document.getElementById('modal-fondo').textContent = candle.notes.fondo;
+            
+            document.getElementById('modal-crystal').textContent = candle.crystal;
+            document.getElementById('modal-components').textContent = candle.components;
+            document.getElementById('modal-price').textContent = `$${candle.price.toFixed(2)}`;
+            
+            document.getElementById('modal-badge-category').textContent = candle.category === 'signature' ? 'EDICIÓN SIGNATURE' : 'ESENCIA INDIVIDUAL';
+            document.getElementById('modal-qr-code-text').textContent = candle.code;
+
+            // Renderizar SVG dinámico en el modal
+            const svgContainer = document.getElementById('modal-svg-container');
+            svgContainer.innerHTML = generateCandleSVG(candle.gelColor, candle.title, candle.crystal, candle.waxColor, '100%', '100%');
+
+            // Generar URL Absoluta real para el QR (Compatible con GitHub Pages)
+            const targetUrl = getAbsoluteCandleUrl(candle);
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(targetUrl)}`;
+            
+            document.getElementById('modal-qr-img-box').innerHTML = `<img src="${qrApiUrl}" alt="Código QR ${candle.title}" class="w-20 h-20 object-contain rounded-lg border p-1 bg-white">`;
+
+            // Botón Añadir dentro del Modal
+            const addBtn = document.getElementById('modal-add-btn');
+            addBtn.onclick = () => {
+                closeModal('tech-modal');
+                addToCart(candle.id);
+            };
+
+            document.getElementById('modal-qr-panel').classList.add('hidden');
+            document.getElementById('tech-modal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function toggleModalQR() {
+            document.getElementById('modal-qr-panel').classList.toggle('hidden');
+        }
+
+        /* --- Lógica del Carrito --- */
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-backdrop');
+            const content = document.getElementById('cart-content');
+            
+            if (drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => {
+                    backdrop.classList.remove('opacity-0');
+                    content.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                backdrop.classList.add('opacity-0');
+                content.classList.add('translate-x-full');
+                setTimeout(() => {
+                    drawer.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function addToCart(id) {
+            const candle = candlesData.find(c => c.id === id);
+            if (candle) {
+                const uniqueCartId = 'cart_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                cart.push({ ...candle, cartId: uniqueCartId });
+                updateCartUI();
+                toggleCartDrawer();
+            }
+        }
+
+        function removeFromCart(cartId) {
+            cart = cart.filter(item => item.cartId !== cartId);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items-list');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const badgeEl = document.getElementById('cart-badge');
+            
+            if (!list) return;
+
+            if (badgeEl) {
+                if (cart.length > 0) {
+                    badgeEl.textContent = cart.length;
+                    badgeEl.classList.remove('hidden');
+                } else {
+                    badgeEl.classList.add('hidden');
+                }
+            }
+
+            if (cart.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center text-slate-400 text-xs my-12 flex flex-col items-center">
+                        <i class="fa-solid fa-box-open text-4xl mb-3 text-coastal-300"></i>
+                        Tu cesta costera está vacía.<br>¡Añade una vela para comenzar!
+                    </div>
+                `;
+                if(subtotalEl) subtotalEl.textContent = '$0.00';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price;
+                html += `
+                    <div class="flex items-center gap-3 bg-white p-3 rounded-xl border border-coastal-200 shadow-sm relative">
+                        <div class="w-14 h-14 bg-gradient-to-b from-coastal-50 to-ocean-50 rounded-lg flex items-center justify-center p-1 border border-coastal-100 shrink-0">
+                            ${generateCandleSVG(item.gelColor, item.title, item.crystal, item.waxColor, '100%', '100%')}
+                        </div>
+                        <div class="flex-grow pr-6">
+                            <h4 class="text-xs font-bold text-slate-900 line-clamp-1">${item.title}</h4>
+                            <p class="text-[10px] text-slate-500 font-medium truncate">${item.crystal.split('(')[0]}</p>
+                            <div class="text-ocean-700 font-bold text-xs mt-0.5">$${item.price.toFixed(2)}</div>
+                        </div>
+                        <button onclick="removeFromCart('${item.cartId}')" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-slate-50 hover:bg-rose-50 text-slate-300 hover:text-rose-500 flex items-center justify-center transition-colors" title="Eliminar">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            list.innerHTML = html;
+            if(subtotalEl) subtotalEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        function checkoutCart(phoneNum) {
+            if (cart.length === 0) {
+                alert('Tu cesta está vacía. Selecciona algún producto antes de pagar.');
+                return;
+            }
+
+            let message = "¡Hola *Esencia del Mar*! Quisiera realizar el pedido de las siguientes velas:\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                message += `${index + 1}. *${item.title}* - $${item.price.toFixed(2)}\n`;
+                total += item.price;
+            });
+
+            message += `\n*Subtotal:* $${total.toFixed(2)}`;
+            message += `\n\n¿Me indican los pasos para realizar el pago y envío?`;
+
+            const whatsappUrl = `https://wa.me/${phoneNum}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function filterCandles(category) {
+            currentFilter = category;
+            const filtered = category === 'all' 
+                ? candlesData 
+                : candlesData.filter(c => c.category === category);
+            
+            renderCandles(filtered);
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('bg-ocean-700', 'text-white', 'shadow-md');
+                    btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                } else {
+                    btn.classList.remove('bg-ocean-700', 'text-white', 'shadow-md');
+                    btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                }
+            });
+        }
+
+        /* --- Personalizador Custom Live Preview --- */
+        let customState = {
+            essence2: 'Ninguna',
+            gelColor: '#06b6d4',
+            crystal: 'Cuarzo Amatista (Transmutación & Paz)'
+        };
+
+        function updateCustomMix(key, value) {
+            customState[key] = value;
+            renderCustomPreview();
+        }
+
+        function renderCustomPreview() {
+            const previewContainer = document.getElementById('custom-preview-svg');
+            const titlePreview = document.getElementById('custom-title-preview');
+            const descPreview = document.getElementById('custom-desc-preview');
+            
+            if (!previewContainer) return;
+
+            previewContainer.innerHTML = generateCandleSVG(
+                customState.gelColor, 
+                'Mezcla Personalizada', 
+                customState.crystal, 
+                '#fef2f2', 
+                '100%', 
+                '100%'
+            );
+
+            if (titlePreview) {
+                titlePreview.textContent = customState.essence2 !== 'Ninguna' 
+                    ? `Lavanda Serena + ${customState.essence2}` 
+                    : 'Lavanda Serena Pura';
+            }
+
+            if (descPreview) {
+                descPreview.textContent = `Incrustada con ${customState.crystal.split('(')[0]} y Gel Oceánico personalizado.`;
+            }
+        }
+
+        /* --- Inicialización --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCandles(candlesData);
+            
+            const demoQrBox = document.getElementById('demo-qr-box');
+            if (demoQrBox) {
+                const demoUrl = getAbsoluteCandleUrl(candlesData[0]);
+                const qrDemoApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(demoUrl)}`;
+                demoQrBox.innerHTML = `
+                    <img src="${qrDemoApi}" alt="QR Demo Trazabilidad" class="w-28 h-28 object-contain mb-2">
+                    <span class="text-[10px] font-bold text-ocean-800 tracking-wider">EDM-ROS-2100</span>
+                `;
+            }
+
+            renderCustomPreview();
+            updateCartUI();
         });
-      }
-
-      subtotalEl.textContent = `$${total.toFixed(2)}`;
-    }
-
-    // 6. PERSONALIZADOR
-    function updateCustomizer(key, value) {
-      customizerState[key] = value;
-      const previewSVG = document.getElementById('custom-preview-svg');
-      const titlePreview = document.getElementById('custom-title-preview');
-      const descPreview = document.getElementById('custom-desc-preview');
-
-      previewSVG.innerHTML = generateCandleSVG(
-        customizerState.waxColor, 
-        customizerState.gelColor, 
-        customizerState.crystal, 
-        true
-      );
-
-      titlePreview.textContent = `Vela ${customizerState.scent}`;
-      descPreview.textContent = `Gel Especial & ${customizerState.crystal}`;
-    }
-
-    function addCustomToCart() {
-      const customCandle = {
-        id: `custom-${Date.now()}`,
-        name: `Vela Personalizada (${customizerState.crystal})`,
-        price: 29.90,
-        waxColor: customizerState.waxColor,
-        gelColor: customizerState.gelColor,
-        crystal: customizerState.crystal,
-        cartId: Date.now()
-      };
-      cart.push(customCandle);
-      updateCartUI();
-      toggleCart();
-    }
-
-    // 7. MODAL FICHA TÉCNICA & CÓDIGO QR
-    function openTechModal(productId) {
-      const candle = candlesData.find(c => c.id === productId);
-      if (!candle) return;
-
-      document.getElementById('modal-title').textContent = candle.name;
-      document.getElementById('modal-salida').textContent = candle.salida;
-      document.getElementById('modal-corazon').textContent = candle.corazon;
-      document.getElementById('modal-fondo').textContent = candle.fondo;
-      document.getElementById('modal-cristal').textContent = candle.crystal;
-      document.getElementById('modal-composicion').textContent = candle.composicion;
-
-      // Generar Código QR Dinámico
-      const currentURL = window.location.href.split('#')[0] + `#${candle.id}`;
-      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentURL)}`;
-      document.getElementById('modal-qr').src = qrApiUrl;
-
-      const modal = document.getElementById('tech-modal');
-      const modalBox = document.getElementById('tech-modal-box');
-      modal.classList.remove('pointer-events-none', 'opacity-0');
-      modalBox.classList.remove('scale-95');
-      modalBox.classList.add('scale-100');
-    }
-
-    function closeTechModal() {
-      const modal = document.getElementById('tech-modal');
-      const modalBox = document.getElementById('tech-modal-box');
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      modalBox.classList.remove('scale-100');
-      modalBox.classList.add('scale-95');
-    }
-
-    // 8. PEDIDO VÍA WHATSAPP
-    function sendWhatsAppOrder() {
-      if (cart.length === 0) return alert('Añade al menos un producto a la cesta.');
-      
-      let msg = "¡Hola! Quisiera realizar el pedido de las siguientes velas:\n\n";
-      let total = 0;
-      cart.forEach((item, i) => {
-        msg += `${i + 1}. *${item.name}* - $${item.price.toFixed(2)}\n`;
-        total += item.price;
-      });
-      msg += `\n*Total:* $${total.toFixed(2)}`;
-
-      const phone = "34600000000"; // Sustituir por el número de WhatsApp real
-      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-    }
-
-    // INICIALIZACIÓN
-    document.addEventListener('DOMContentLoaded', () => {
-      renderProducts();
-      updateCustomizer('waxColor', '#f0f9ff');
-    });
-  </script>
+    </script>
 </body>
 </html>
