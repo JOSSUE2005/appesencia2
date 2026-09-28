@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generador de Logo PNG - Esencia del Mar</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #f0fdfa; margin: 0; }
+        button { background: #0d9488; color: white; border: none; padding: 14px 28px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(13,148,136,0.3); transition: 0.2s; }
+        button:hover { background: #0f766e; transform: translateY(-2px); }
+        canvas { background: transparent; margin-bottom: 20px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+    <canvas id="logoCanvas" width="1024" height="1024" style="width: 320px; height: 320px;"></canvas>
+    <button onclick="downloadPNG()">Descargar Logo PNG HD (1024x1024)</button>
+
+    <script>
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawLogo() {
+            ctx.clearRect(0, 0, 1024, 1024);
+            
+            // Fondo Circular
+            ctx.beginPath();
+            ctx.arc(512, 512, 460, 0, Math.PI * 2);
+            ctx.fillStyle = '#f0fdfa';
+            ctx.fill();
+            ctx.lineWidth = 16;
+            ctx.strokeStyle = '#0f766e';
+            ctx.stroke();
+
+            // Olas
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(512, 512, 450, 0, Math.PI * 2);
+            ctx.clip();
+
+            ctx.fillStyle = 'rgba(14, 165, 233, 0.25)';
+            ctx.beginPath();
+            ctx.moveTo(0, 680);
+            ctx.quadraticCurveTo(256, 620, 512, 680);
+            ctx.quadraticCurveTo(768, 740, 1024, 680);
+            ctx.lineTo(1024, 1024); ctx.lineTo(0, 1024);
+            ctx.fill();
+
+            ctx.fillStyle = 'rgba(13, 148, 136, 0.35)';
+            ctx.beginPath();
+            ctx.moveTo(0, 720);
+            ctx.quadraticCurveTo(256, 660, 512, 720);
+            ctx.quadraticCurveTo(768, 780, 1024, 720);
+            ctx.lineTo(1024, 1024); ctx.lineTo(0, 1024);
+            ctx.fill();
+            ctx.restore();
+
+            // Vaso Cristal
+            ctx.fillStyle = '#ffffff';
+            ctx.strokeStyle = '#0f766e';
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.roundRect(380, 390, 264, 280, 40);
+            ctx.fill();
+            ctx.stroke();
+
+            // Gel Azul
+            ctx.fillStyle = 'rgba(2, 132, 199, 0.85)';
+            ctx.beginPath();
+            ctx.roundRect(390, 530, 244, 130, 20);
+            ctx.fill();
+
+            // Cera
+            ctx.fillStyle = '#fffbeb';
+            ctx.beginPath();
+            ctx.roundRect(390, 400, 244, 130, 10);
+            ctx.fill();
+
+            // Mecha y Llama
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 6;
+            ctx.beginPath();
+            ctx.moveTo(512, 400); ctx.lineTo(512, 350);
+            ctx.stroke();
+
+            ctx.fillStyle = 'rgba(254, 240, 138, 0.5)';
+            ctx.beginPath();
+            ctx.arc(512, 290, 60, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.beginPath();
+            ctx.moveTo(512, 350);
+            ctx.quadraticCurveTo(550, 290, 512, 230);
+            ctx.quadraticCurveTo(474, 290, 512, 350);
+            ctx.fill();
+
+            // Texto
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '900 48px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('ESENCIA DEL MAR', 512, 810);
+
+            ctx.fillStyle = '#0f766e';
+            ctx.font = 'bold 20px sans-serif';
+            ctx.fillText('SOYA & GEL OCEÁNICO', 512, 855);
+        }
+
+        function downloadPNG() {
+            const link = document.createElement('a');
+            link.download = 'logo_esencia_del_mar.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        drawLogo();
+    </script>
+</body>
+</html>
