@@ -1,4 +1,4 @@
-const CACHE_NAME = 'esencia-del-mar-v2'; // Cambiamos la versión a v2 para forzar actualización
+const CACHE_NAME = 'esencia-del-mar-v3'; // Cambiamos la versión a v3 para forzar actualización
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
